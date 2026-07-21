@@ -6,8 +6,6 @@ readingTime: "~ 4 мин"
 video: "1 видео"
 ---
 
-# Коллекции спредов: Рабочие пространства под разные арбитражные стратегии
-
 <iframe width="720"  height="405" src="https://rutube.ru/play/embed/b565f99c59862ece45e3e69bb4fc0060" style="border: none;" allow="clipboard-write; autoplay" allowFullScreen></iframe>
     
 
@@ -24,35 +22,35 @@ video: "1 видео"
 
 Теперь с использованием «коллекций спредов», для каждой из арбитражных стратегий можно сделать свой скринер в виде таблицы спредов с параметрами и свои графики спредов. Вот как это выглядит на примере публичной коллекции “MOEX  фьючерс-акция”.
 
-![Иллюстрация к статье spread-collections](../../../assets/help/spread-collections-1-ca-1.png)
+![Иллюстрация к статье spread-collections](/help-assets/spread-collections-1-ca-1.png)
 
 В каждом спреде формулами задается несколько переменных
 
-![Иллюстрация к статье spread-collections](../../../assets/help/spread-collections-2-ca-2.png)
+![Иллюстрация к статье spread-collections](/help-assets/spread-collections-2-ca-2.png)
 
 Настраивается отображение списка спредов в коллекции в виде таблицы. Определяются, какие поля будут показаны, их порядок, названия, подсказки и форматы
 
-![Иллюстрация к статье spread-collections](../../../assets/help/spread-collections-3-ca-3.png)
+![Иллюстрация к статье spread-collections](/help-assets/spread-collections-3-ca-3.png)
 
 Получившуюся таблицу скринера можно сортировать и фильтровать по любому полю.
 
-![Иллюстрация к статье spread-collections](../../../assets/help/spread-collections-4-ca-4.png)
+![Иллюстрация к статье spread-collections](/help-assets/spread-collections-4-ca-4.png)
 
 Поведение каждого спреда можно изучить на графике, на который выведены важные переменные. Переменные можно показывать как на одном графике, так и на отдельных. Для каждой переменной можно настраивать цвет, стиль и отображаемое название.
 
-![Иллюстрация к статье spread-collections](../../../assets/help/spread-collections-5-ca-5.png)
+![Иллюстрация к статье spread-collections](/help-assets/spread-collections-5-ca-5.png)
 
 На каждый спред можно настроить уведомления, нажав на иконку колокольчика вверху графика.
 
-![Иллюстрация к статье spread-collections](../../../assets/help/spread-collections-6-ca-6.png)
+![Иллюстрация к статье spread-collections](/help-assets/spread-collections-6-ca-6.png)
 
 В условиях срабатывания уведомления можно выбрать любую переменную.
 
-![Иллюстрация к статье spread-collections](../../../assets/help/spread-collections-7-ca-7.png)
+![Иллюстрация к статье spread-collections](/help-assets/spread-collections-7-ca-7.png)
 
 Можно комбинировать несколько условий через логическое “И”. Например, если премия больше порога и до экспирации осталось менее 10 дней.
 
-![Иллюстрация к статье spread-collections](../../../assets/help/spread-collections-8-ca-8.png)
+![Иллюстрация к статье spread-collections](/help-assets/spread-collections-8-ca-8.png)
 
 Мы продолжим готовить новые коллекции для вас, но уже сейчас Вы можете сами под себя настроить любые коллекции, которые вам необходимы.  Создавайте  свои коллекции, настраивайте таблицу и графики и создавайте те спреды, которыми пользуетесь.
 

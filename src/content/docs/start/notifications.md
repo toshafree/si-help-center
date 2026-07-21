@@ -5,22 +5,21 @@ source: "https://spread-i.online/help/notifications"
 readingTime: "~5 мин"
 ---
 
-# Оповещения  об уровне спреда
 Арбитражные возможности возникают неожиданно. Чтобы успеть войти в сделку и поймать момент выхода из нее, теперь можно настроить уведомления о пересечении спредом пары определенного уровня прямо на графике.
 
-### Подключение телеграм бота.
+## Подключение телеграм бота.
 
 Для начала использования оповещений, необходимо подключиться к телеграм боту. 
 
-![Иллюстрация к статье notifications](../../../assets/help/notifications-1-notification_menu.png)
+![Иллюстрация к статье notifications](/help-assets/notifications-1-notification_menu.png)
 
 Для этого  открываем профиль (значок человека справа сверху) и выбираем пункт “уведомление в телеграмм”.
 
-![Иллюстрация к статье notifications](../../../assets/help/notifications-2-notification_concent.png)
+![Иллюстрация к статье notifications](/help-assets/notifications-2-notification_concent.png)
 
 В открывшемся окне даем согласие на обработку персональных данных 
 
-![Иллюстрация к статье notifications](../../../assets/help/notifications-3-notification_telegram.png)
+![Иллюстрация к статье notifications](/help-assets/notifications-3-notification_telegram.png)
 
  В следующем диалоговом окне сканируем QR-код своим смартфоном с установленным Телеграм или переходим по ссылке.
 
@@ -29,17 +28,17 @@ readingTime: "~5 мин"
 Внимание. При необходимости, Вы всегда можете отписаться от данного бота. Для этого выберите снова Профиль-> Уведомления в Телеграм -> Отключить уведомления
 Добавление оповещений.
 
-### Создание оповещения
+## Создание оповещения
 
-![Иллюстрация к статье notifications](../../../assets/help/notifications-4-notification_add.png)
+![Иллюстрация к статье notifications](/help-assets/notifications-4-notification_add.png)
 
 Для добавления оповещения, в Бектестер, нажимаете кнопку “Добавить оповещение”.
 
-![Иллюстрация к статье notifications](../../../assets/help/notifications-5-notification_chart_add.png)
+![Иллюстрация к статье notifications](/help-assets/notifications-5-notification_chart_add.png)
 
 Второй вариант - вы  можете создать оповещение прямо на графике,  нажав “+” в нужном месте на графике спреда.
 
-![Иллюстрация к статье notifications](../../../assets/help/notifications-6-notification_modal.png)
+![Иллюстрация к статье notifications](/help-assets/notifications-6-notification_modal.png)
 
 Откроется окно параметров оповещения, где вы задаёте необходимые параметры.
 
@@ -56,19 +55,19 @@ readingTime: "~5 мин"
 В данном режиме можно выбрать Интервал повторения -  время между повторными оповещениями при соблюдении условий. 
 Управление оповещениями
 
-###  Управление оповещениями
+## Управление оповещениями
 
-![Иллюстрация к статье notifications](../../../assets/help/notifications-7-notification_bell.png)
+![Иллюстрация к статье notifications](/help-assets/notifications-7-notification_bell.png)
 
 Для просмотра заданных оповещений нажмите колокольчик рядом со значком профиля.
 
 В открывшемся окне вы можете управлять оповещениями. 
 
-![Иллюстрация к статье notifications](../../../assets/help/notifications-8-notification_list.png)
+![Иллюстрация к статье notifications](/help-assets/notifications-8-notification_list.png)
 
  Верхние вкладки позволяют переключаться между Оповещениями МОEX и Крипто Фильтрами. 
 
-![Иллюстрация к статье notifications](../../../assets/help/notifications-9-notification_list_status.png)
+![Иллюстрация к статье notifications](/help-assets/notifications-9-notification_list_status.png)
 
 Здесь же, Вы можете фильтровать оповещения по статусу: Сработало, Активно, Пауза, ect
 

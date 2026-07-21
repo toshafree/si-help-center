@@ -5,7 +5,7 @@ const SOURCE_ORIGIN = 'https://spread-i.online';
 const TOPICS_URL = `${SOURCE_ORIGIN}/api/get-topics`;
 const ARTICLE_URL = `${SOURCE_ORIGIN}/api/get-article-by-slug`;
 const DOCS_DIR = path.resolve('src/content/docs');
-const ASSETS_DIR = path.resolve('src/assets/help');
+const ASSETS_DIR = path.resolve('public/help-assets');
 const SIDEBAR_FILE = path.resolve('src/data/sidebar.mjs');
 const TOPICS_CACHE = path.resolve('.cache/spread-topics.json');
 
@@ -66,7 +66,7 @@ function basenameFromUrl(url) {
   return path.basename(pathname).replace(/[^a-zA-Z0-9._-]/g, '-');
 }
 
-async function downloadImage(url, slug, index, imageMap, docsDirectory) {
+async function downloadImage(url, slug, index, imageMap) {
   const decodedUrl = decodeHtmlEntities(url);
   if (imageMap.has(decodedUrl)) return imageMap.get(decodedUrl);
 
@@ -83,15 +83,13 @@ async function downloadImage(url, slug, index, imageMap, docsDirectory) {
   const bytes = Buffer.from(await response.arrayBuffer());
   await writeFile(filePath, bytes);
 
-  const relativePath = path
-    .relative(path.join(DOCS_DIR, docsDirectory), filePath)
-    .replaceAll(path.sep, '/');
+  const publicPath = `/help-assets/${fileName}`;
 
-  imageMap.set(decodedUrl, relativePath);
-  return relativePath;
+  imageMap.set(decodedUrl, publicPath);
+  return publicPath;
 }
 
-async function rewriteImages(markdown, slug, docsDirectory) {
+async function rewriteImages(markdown, slug) {
   const imageMap = new Map();
   const imagePattern = /!\[([^\]]*)\]\((https?:\/\/[^)]+)\)/g;
   const replacements = [];
@@ -100,7 +98,7 @@ async function rewriteImages(markdown, slug, docsDirectory) {
 
   while ((match = imagePattern.exec(markdown))) {
     const [full, alt, url] = match;
-    const localPath = await downloadImage(url, slug, index, imageMap, docsDirectory);
+    const localPath = await downloadImage(url, slug, index, imageMap);
     const nextAlt = alt || `Иллюстрация к статье ${slug}`;
     replacements.push([full, `![${nextAlt}](${localPath})`]);
     index += 1;
@@ -144,6 +142,18 @@ function normalizeMarkdown(markdown) {
     .trim();
 }
 
+function removeLeadingTitle(markdown) {
+  return markdown.replace(/^\s*#\s+.+?(?:\n{1,}|$)/, '').trim();
+}
+
+function promoteImportedHeadings(markdown) {
+  return markdown.replace(/^(#{3,6})\s+/gm, (match, hashes) => `${'#'.repeat(hashes.length - 1)} `);
+}
+
+function removeEmptyImages(markdown) {
+  return markdown.replace(/^\s*!\[[^\]]*\]\(\s*\)\s*$/gm, '').replace(/\n{3,}/g, '\n\n').trim();
+}
+
 async function fetchJson(url) {
   const response = await fetch(url, {
     headers: {
@@ -159,10 +169,18 @@ async function fetchJson(url) {
 }
 
 function buildSidebar(topics) {
+  const topicLabels = new Map([
+    ['Как пользоваться Spread Insight для поиска арбитражных возможностей', 'Быстрый старт'],
+    ['Криптоскринер для арбитража на фьючерсах', 'Криптоскринер'],
+    ['Торговые идеи для статистического арбитража', 'Торговые идеи'],
+    ['Как работает статистический арбитраж', 'Статистический арбитраж'],
+    ['Как работает платформа Spread Insight', 'Платформа'],
+  ]);
+
   const groups = topics.map((topic) => {
     const directory = topicDirs.get(topic.name) ?? topic.name.toLowerCase().replace(/[^a-z0-9]+/gi, '-');
     return {
-      label: topic.name,
+      label: topicLabels.get(topic.name) ?? topic.name,
       items: topic.articles.map((article) => ({
         label: article.title,
         slug: `${directory}/${article.slug}`,
@@ -215,7 +233,10 @@ async function importArticle(article, topicName, directory, routeMap) {
   const originalUrl = `${SOURCE_ORIGIN}/help/${article.slug}`;
   const data = await fetchJson(`${ARTICLE_URL}?slug=${encodeURIComponent(article.slug)}`);
   let markdown = normalizeMarkdown(data.content ?? '');
-  markdown = await rewriteImages(markdown, data.slug, directory);
+  markdown = removeLeadingTitle(markdown);
+  markdown = promoteImportedHeadings(markdown);
+  markdown = removeEmptyImages(markdown);
+  markdown = await rewriteImages(markdown, data.slug);
   markdown = rewriteHelpLinks(markdown, routeMap);
   markdown = appendNextLinks(markdown, data.description?.next, routeMap);
 

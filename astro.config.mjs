@@ -4,7 +4,7 @@ import starlight from '@astrojs/starlight';
 import sidebar from './src/data/sidebar.mjs';
 
 export default defineConfig({
-  site: 'https://spread-insight-help-center.example',
+  site: 'https://spread-insight-help-center.yummy-owlet-9481.chatgpt.site',
   integrations: [
     starlight({
       title: 'Spread Insight',
