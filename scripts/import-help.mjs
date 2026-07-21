@@ -124,6 +124,29 @@ function rewriteHelpLinks(markdown, routeMap) {
     .replace(/href="\/help\/([a-zA-Z0-9-]+)"/g, (_, slug) => `href="${routeMap.get(slug) ?? `/${slug}/`}"`);
 }
 
+function isDocsRootUrl(url) {
+  return [
+    '/crypto/',
+    '/help-assets/',
+    '/ideas/',
+    '/platform/',
+    '/start/',
+    '/stat-arbitrage/',
+  ].some((prefix) => url.startsWith(prefix));
+}
+
+function rewriteSourceSiteLinks(markdown) {
+  return markdown
+    .replace(/\]\(\/(?!\/)([^)\s]+)\)/g, (match, target) => {
+      const url = `/${target}`;
+      return isDocsRootUrl(url) ? match : `](${SOURCE_ORIGIN}${url})`;
+    })
+    .replace(/href="\/(?!\/)([^"]+)"/g, (match, target) => {
+      const url = `/${target}`;
+      return isDocsRootUrl(url) ? match : `href="${SOURCE_ORIGIN}${url}"`;
+    });
+}
+
 function appendNextLinks(markdown, nextLinks = [], routeMap) {
   if (!Array.isArray(nextLinks) || nextLinks.length === 0) return markdown;
 
@@ -238,6 +261,7 @@ async function importArticle(article, topicName, directory, routeMap) {
   markdown = removeEmptyImages(markdown);
   markdown = await rewriteImages(markdown, data.slug);
   markdown = rewriteHelpLinks(markdown, routeMap);
+  markdown = rewriteSourceSiteLinks(markdown);
   markdown = appendNextLinks(markdown, data.description?.next, routeMap);
 
   const output = `${frontmatter(data, topicName, originalUrl)}${markdown}\n`;

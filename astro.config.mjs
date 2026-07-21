@@ -3,8 +3,19 @@ import starlight from '@astrojs/starlight';
 
 import sidebar from './src/data/sidebar.mjs';
 
+const isGitHubPages = process.env.DEPLOY_TARGET === 'github-pages';
+const [githubOwner = 'owner', githubRepo = 'si-help-center'] = (
+  process.env.GITHUB_REPOSITORY ?? 'owner/si-help-center'
+).split('/');
+const githubPagesBase =
+  process.env.GITHUB_PAGES_BASE ??
+  (githubRepo.endsWith('.github.io') ? undefined : `/${githubRepo}`);
+
 export default defineConfig({
-  site: 'https://spread-insight-help-center.yummy-owlet-9481.chatgpt.site',
+  site: isGitHubPages
+    ? (process.env.GITHUB_PAGES_SITE ?? `https://${githubOwner}.github.io`)
+    : 'https://spread-insight-help-center.yummy-owlet-9481.chatgpt.site',
+  ...(isGitHubPages && githubPagesBase ? { base: githubPagesBase } : {}),
   integrations: [
     starlight({
       title: 'Spread Insight',
