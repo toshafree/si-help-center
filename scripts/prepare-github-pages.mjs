@@ -11,12 +11,15 @@ const ROOT_URL_PREFIXES = [
   'help-assets',
   'ideas',
   'index.html',
-  'pagefind',
   'platform',
   'sitemap',
   'start',
   'stat-arbitrage',
 ];
+
+function escapeRegExp(value) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
 
 function githubPagesBase() {
   const repository = process.env.GITHUB_REPOSITORY ?? 'owner/si-help-center';
@@ -30,7 +33,7 @@ function githubPagesBase() {
 
 function rootUrlPattern(base) {
   const baseSegment = base.replace(/^\//, '');
-  const prefixes = ROOT_URL_PREFIXES.map((prefix) => prefix.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|');
+  const prefixes = ROOT_URL_PREFIXES.map(escapeRegExp).join('|');
   const excluded = baseSegment
     ? `(?!${baseSegment}(?:/|$))`
     : '';
@@ -38,9 +41,15 @@ function rootUrlPattern(base) {
   return new RegExp(`(["'=:(,\\s])/${excluded}(?=(${prefixes})(?:[/?#"']|$))`, 'g');
 }
 
+function dedupeBaseUrls(value, base) {
+  if (!base) return value;
+  const segment = escapeRegExp(base.replace(/^\//, ''));
+  return value.replace(new RegExp(`/${segment}/${segment}(?=/)`, 'g'), `/${base.replace(/^\//, '')}`);
+}
+
 function prefixRootUrls(value, base) {
   if (!base) return value;
-  return value.replace(rootUrlPattern(base), `$1${base}/`);
+  return dedupeBaseUrls(value.replace(rootUrlPattern(base), `$1${base}/`), base);
 }
 
 async function walk(directory) {

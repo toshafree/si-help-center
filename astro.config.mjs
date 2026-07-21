@@ -22,7 +22,7 @@ export default defineConfig({
       description:
         'Центр знаний Spread Insight: скринеры, спреды, бэктесты, криптоарбитраж и статистический арбитраж.',
       logo: {
-        src: './src/assets/logo.svg',
+        src: './src/assets/logo.png',
         alt: 'Spread Insight',
       },
       favicon: '/favicon.svg',

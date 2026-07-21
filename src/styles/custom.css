@@ -105,11 +105,28 @@ a:hover {
   color: var(--si-blue-strong);
 }
 
-.header {
+.page > header.header {
   border-bottom-color: var(--si-border);
   background: color-mix(in srgb, var(--sl-color-bg-nav), transparent 5%);
   backdrop-filter: blur(16px);
   box-shadow: 0 1px 0 var(--si-border);
+}
+
+.page > header.header > .header {
+  gap: clamp(0.75rem, 2vw, 1.25rem);
+  border-bottom: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.page > header.header > .header > .title-wrapper,
+.page > header.header > .header > .sl-flex.print\:hidden,
+site-search {
+  min-width: 0;
+}
+
+.page > header.header > .header > .sl-flex.print\:hidden {
+  justify-content: center;
 }
 
 .site-title {
@@ -122,7 +139,11 @@ a:hover {
 .site-title img {
   width: 2.25rem;
   height: 2.25rem;
-  border-radius: 0.75rem;
+  box-sizing: border-box;
+  padding: 0.33rem;
+  border-radius: 0.65rem;
+  background: var(--si-blue-strong);
+  object-fit: contain;
   box-shadow: 0 8px 22px rgba(18, 140, 255, 0.25);
 }
 
@@ -136,14 +157,31 @@ a:hover {
 }
 
 site-search button {
+  width: min(100%, 22rem);
+  min-width: 0;
+  justify-content: flex-start;
   border: 1px solid var(--si-border);
   border-radius: 0.65rem;
   background: color-mix(in srgb, var(--sl-color-bg), var(--sl-color-bg-nav) 35%);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
+site-search button span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+site-search button kbd {
+  flex-shrink: 0;
+}
+
 :root[data-theme="light"] site-search button {
   background: #ffffff;
+}
+
+.right-group {
+  min-width: max-content;
 }
 
 .social-icons a {
@@ -323,17 +361,51 @@ site-search button {
   }
 }
 
+@media (min-width: 50rem) and (max-width: 64rem) {
+  .right-group .social-icons {
+    display: none;
+  }
+}
+
+@media (min-width: 50rem) and (max-width: 56rem) {
+  .site-title span {
+    max-width: 9.5rem;
+  }
+
+  site-search button {
+    max-width: 18rem;
+  }
+}
+
 @media (max-width: 49.99rem) {
+  :root {
+    --sl-text-h1: 2rem;
+  }
+
   .site-title img {
     width: 2rem;
     height: 2rem;
   }
 
   .site-title span {
-    max-width: 11rem;
+    max-width: 9.5rem;
+  }
+
+  site-search button {
+    width: 2.25rem;
+    height: 2.25rem;
+    justify-content: center;
+    padding: 0;
+  }
+
+  site-search button span,
+  site-search button kbd {
+    display: none !important;
   }
 
   .content-panel:first-of-type h1 {
-    max-width: 100%;
+    max-width: 12ch;
+    max-inline-size: 12ch;
+    overflow-wrap: anywhere;
   }
 }
