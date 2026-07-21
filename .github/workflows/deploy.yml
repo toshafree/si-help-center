@@ -21,6 +21,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
 
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
       - name: Build and upload
         uses: withastro/action@v6
         with:
