@@ -1,7 +1,8 @@
-import { copyFile, mkdir, writeFile } from 'node:fs/promises';
+import { copyFile, cp, mkdir, readdir, rm, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 
 const distDir = path.resolve('dist');
+const clientDir = path.join(distDir, 'client');
 const serverDir = path.join(distDir, 'server');
 const distOpenAiDir = path.join(distDir, '.openai');
 
@@ -61,8 +62,18 @@ export default {
 `;
 
 await mkdir(serverDir, { recursive: true });
+await rm(clientDir, { force: true, recursive: true });
+await mkdir(clientDir, { recursive: true });
 await mkdir(distOpenAiDir, { recursive: true });
+
+for (const entry of await readdir(distDir, { withFileTypes: true })) {
+  if (['client', 'server', '.openai'].includes(entry.name)) continue;
+  await cp(path.join(distDir, entry.name), path.join(clientDir, entry.name), {
+    recursive: true,
+  });
+}
+
 await writeFile(path.join(serverDir, 'index.js'), workerSource);
 await copyFile(path.resolve('.openai/hosting.json'), path.join(distOpenAiDir, 'hosting.json'));
 
-console.log('Prepared Sites build entrypoint at dist/server/index.js');
+console.log('Prepared Sites build at dist/server/index.js with static assets in dist/client');
