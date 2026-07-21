@@ -47,3 +47,16 @@
 - Изображения отображаются локально.
 - Есть светлая и темная темы с кастомной палитрой.
 - Логотип и ссылки на Telegram, YouTube, Rutube видны в интерфейсе.
+
+## Деплой в обычный GitHub Pages repo
+
+- Целевой репозиторий: `toshafree/si-help-center`.
+- Целевой URL для обычного repo Pages: `https://toshafree.github.io/si-help-center/`.
+- Для GitHub Pages используется отдельная команда `npm run build:github`.
+- В режиме GitHub Pages Astro получает:
+  - `site`: `https://<owner>.github.io`;
+  - `base`: `/<repo>`, например `/si-help-center`.
+- После сборки `scripts/prepare-github-pages.mjs` добавляет `.nojekyll` и переписывает root-relative ссылки на ассеты, Pagefind-индекс, sitemap и внутренние страницы под base path.
+- Workflow расположен в `.github/workflows/deploy.yml` и запускается на push в `main` или вручную через `workflow_dispatch`.
+- В настройках репозитория нужно один раз включить GitHub Pages:
+  - `Settings` -> `Pages` -> `Build and deployment` -> `Source` -> `GitHub Actions`.
