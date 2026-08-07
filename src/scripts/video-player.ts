@@ -131,11 +131,6 @@ class SpreadInsightVideo extends HTMLElement {
       const toolbar = document.createElement('div');
       toolbar.className = 'si-video__toolbar';
 
-      const label = document.createElement('span');
-      label.className = 'si-video__provider-label';
-      label.textContent = 'Смотреть на:';
-      toolbar.append(label);
-
       const group = document.createElement('div');
       group.className = 'si-video__providers';
       group.setAttribute('role', 'group');
