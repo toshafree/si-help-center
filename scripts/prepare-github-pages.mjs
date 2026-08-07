@@ -3,19 +3,6 @@ import path from 'node:path';
 
 const DIST_DIR = path.resolve('dist');
 const TEXT_EXTENSIONS = new Set(['.css', '.html', '.js', '.json', '.xml']);
-const ROOT_URL_PREFIXES = [
-  '_astro',
-  '404.html',
-  'crypto',
-  'favicon.svg',
-  'help-assets',
-  'ideas',
-  'index.html',
-  'platform',
-  'sitemap',
-  'start',
-  'stat-arbitrage',
-];
 
 function escapeRegExp(value) {
   return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
@@ -31,14 +18,14 @@ function githubPagesBase() {
   return base.startsWith('/') ? base.replace(/\/$/, '') : `/${base.replace(/\/$/, '')}`;
 }
 
-function rootUrlPattern(base) {
+function rootUrlPattern(base, prefixes) {
   const baseSegment = base.replace(/^\//, '');
-  const prefixes = ROOT_URL_PREFIXES.map(escapeRegExp).join('|');
+  const prefixPattern = prefixes.map(escapeRegExp).join('|');
   const excluded = baseSegment
     ? `(?!${baseSegment}(?:/|$))`
     : '';
 
-  return new RegExp(`(["'=:(,\\s])/${excluded}(?=(${prefixes})(?:[/?#"']|$))`, 'g');
+  return new RegExp(`(["'=:(,\\s])/${excluded}(?=(${prefixPattern})(?:[/?#"']|$))`, 'g');
 }
 
 function dedupeBaseUrls(value, base) {
@@ -47,9 +34,9 @@ function dedupeBaseUrls(value, base) {
   return value.replace(new RegExp(`/${segment}/${segment}(?=/)`, 'g'), `/${base.replace(/^\//, '')}`);
 }
 
-function prefixRootUrls(value, base) {
+function prefixRootUrls(value, base, prefixes) {
   if (!base) return value;
-  return dedupeBaseUrls(value.replace(rootUrlPattern(base), `$1${base}/`), base);
+  return dedupeBaseUrls(value.replace(rootUrlPattern(base, prefixes), `$1${base}/`), base);
 }
 
 async function walk(directory) {
@@ -67,11 +54,15 @@ async function walk(directory) {
 
 async function main() {
   const base = githubPagesBase();
+  const rootEntries = await readdir(DIST_DIR, { withFileTypes: true });
+  const rootUrlPrefixes = rootEntries
+    .map((entry) => entry.name)
+    .filter((name) => !name.startsWith('.'));
   const files = await walk(DIST_DIR);
 
   for (const file of files) {
     const original = await readFile(file, 'utf8');
-    const next = prefixRootUrls(original, base);
+    const next = prefixRootUrls(original, base, rootUrlPrefixes);
     if (next !== original) await writeFile(file, next);
   }
 
