@@ -6,7 +6,9 @@ readingTime: "~ 7 мин"
 video: "1 видео"
 ---
 
-<iframe width="720" height="405" src="https://rutube.ru/play/embed/5638973d16f74cb4d09fe15b3a630552/" style="border: none;" allow="clipboard-write; autoplay" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+<div class="si-video-block">
+<si-video title="Экспресс обзор криптоскринера Spread Insight" youtube="https://youtu.be/wkdBKOpYHik" rutube="https://rutube.ru/video/5638973d16f74cb4d09fe15b3a630552/"><span class="si-video__fallback">Смотреть видео: <a href="https://youtu.be/wkdBKOpYHik">YouTube</a> · <a href="https://rutube.ru/video/5638973d16f74cb4d09fe15b3a630552/">Rutube</a></span></si-video>
+</div>
 
 Криптовалюты торгуются на 10-ках бирж, на наиболее ликвидные криптовалюты торгуются фьючерсы и в моменты сильных движений цены конкретного инструмента на разных биржах могут расходиться. Это создает возможности для арбитража. 
 
@@ -91,4 +93,3 @@ video: "1 видео"
 
 - [Что такое фандинг](/crypto/crypto-funding/)
 - [Виды арбитража на криптовалютном рынке](/crypto/crypto-pair-types/)
-

@@ -6,7 +6,9 @@ readingTime: "~ 4 мин"
 video: "1 видео"
 ---
 
-<iframe width="720" height="405" src="https://rutube.ru/play/embed/2666c7916bc077e993439fa631e52757" style="border: none;" allow="clipboard-write; autoplay" allowFullScreen></iframe>
+<div class="si-video-block">
+<si-video title="ИИ Ассистент арбитражера" youtube="https://youtu.be/-zvKE6QANLc" rutube="https://rutube.ru/video/2666c7916bc077e993439fa631e52757/"><span class="si-video__fallback">Смотреть видео: <a href="https://youtu.be/-zvKE6QANLc">YouTube</a> · <a href="https://rutube.ru/video/2666c7916bc077e993439fa631e52757/">Rutube</a></span></si-video>
+</div>
     
 
 ИИ бесценный помощник при поиске арбитражных идей. Ему знакомы все биржи и инструменты. Он знает множество арбитражных комбинаций. По вашему запросу он может собрать спред и объяснить, как его торговать. Вот только он спред он может собрать неправильно и вообще из несуществующих инструментов.

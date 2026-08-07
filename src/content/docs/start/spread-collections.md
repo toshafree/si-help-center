@@ -6,7 +6,9 @@ readingTime: "~ 4 мин"
 video: "1 видео"
 ---
 
-<iframe width="720"  height="405" src="https://rutube.ru/play/embed/b565f99c59862ece45e3e69bb4fc0060" style="border: none;" allow="clipboard-write; autoplay" allowFullScreen></iframe>
+<div class="si-video-block">
+<si-video title="Коллекции спредов: Рабочие пространства под разные арбитражные стратегии" youtube="https://youtu.be/K6JTIrr0HiQ" rutube="https://rutube.ru/video/b565f99c59862ece45e3e69bb4fc0060/"><span class="si-video__fallback">Смотреть видео: <a href="https://youtu.be/K6JTIrr0HiQ">YouTube</a> · <a href="https://rutube.ru/video/b565f99c59862ece45e3e69bb4fc0060/">Rutube</a></span></si-video>
+</div>
     
 
 В новом релизе  Spread Insight  мы сделали шаг в сторону универсального аналитического инструмента для любого типа арбитража. Есть много разных типов арбитража и для каждого из них нужны свои формулы, свои поля, вид скринера,  виды уведомления. 

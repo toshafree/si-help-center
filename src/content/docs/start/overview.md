@@ -6,7 +6,9 @@ readingTime: "~ 7 мин"
 video: "1 видео"
 ---
 
-<iframe width="720" height="405" src="https://rutube.ru/play/embed/90e88c6f46b15392b380cd41016e59ae/?p=jmL1sHoFeG6T7rjFvd8XJQ" frameBorder="0" allow="clipboard-write; autoplay" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+<div class="si-video-block">
+<si-video title="Экспресс обзор Spread Insight" rutube="https://rutube.ru/play/embed/90e88c6f46b15392b380cd41016e59ae/?p=jmL1sHoFeG6T7rjFvd8XJQ"><span class="si-video__fallback">Смотреть видео: <a href="https://rutube.ru/play/embed/90e88c6f46b15392b380cd41016e59ae/?p=jmL1sHoFeG6T7rjFvd8XJQ">Rutube</a></span></si-video>
+</div>
 
 Арбитраж является перспективной возможностью заработка на фондовом рынке. Идея проста: временные отклонения цен двух связанных акций обычно возвращаются к среднему значению, позволяя трейдеру фиксировать прибыль.
 Spread Insight - скринер пар инструментов, который поможет вам узнать о таких аномалиях быстрее остальных и получить прибыль, размещая заявки по нашим сигналам.
@@ -73,4 +75,3 @@ Spread Insight состоит из
 
 - [Скринер арбитражных возможностей](/start/screener/)
 - [Как оценить доходность арбитражной сделки с помощью бэктестера](/start/backtester/)
-

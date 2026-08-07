@@ -6,12 +6,9 @@ readingTime: "~ 7 мин"
 video: "1 видео"
 ---
 
-<iframe width="720" height="405"
-        src="https://rutube.ru/play/embed/9a380ad1654eb9b4a0209e9fcd7433fb"
-        style="border: none;"
-        allow="clipboard-write; autoplay"
-        allowFullScreen
-      ></iframe>
+<div class="si-video-block">
+<si-video title="Экспресс обзор конструктора спредов" rutube="https://rutube.ru/play/embed/9a380ad1654eb9b4a0209e9fcd7433fb"><span class="si-video__fallback">Смотреть видео: <a href="https://rutube.ru/play/embed/9a380ad1654eb9b4a0209e9fcd7433fb">Rutube</a></span></si-video>
+</div>
 
     
 

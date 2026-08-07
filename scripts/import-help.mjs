@@ -1,6 +1,8 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 
+import { youtubeUrlForRutubeId } from '../src/data/video-providers.mjs';
+
 const SOURCE_ORIGIN = 'https://spread-i.online';
 const TOPICS_URL = `${SOURCE_ORIGIN}/api/get-topics`;
 const ARTICLE_URL = `${SOURCE_ORIGIN}/api/get-article-by-slug`;
@@ -177,6 +179,61 @@ function removeEmptyImages(markdown) {
   return markdown.replace(/^\s*!\[[^\]]*\]\(\s*\)\s*$/gm, '').replace(/\n{3,}/g, '\n\n').trim();
 }
 
+function escapeHtmlAttribute(value) {
+  return String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/"/g, '&quot;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+}
+
+function videoPlayerMarkup({ title, rutubeUrl, youtubeUrl }) {
+  const attributes = [
+    `title="${escapeHtmlAttribute(title)}"`,
+    youtubeUrl ? `youtube="${escapeHtmlAttribute(youtubeUrl)}"` : undefined,
+    `rutube="${escapeHtmlAttribute(rutubeUrl)}"`,
+  ].filter(Boolean);
+  const links = [
+    youtubeUrl
+      ? `<a href="${escapeHtmlAttribute(youtubeUrl)}">YouTube</a>`
+      : undefined,
+    `<a href="${escapeHtmlAttribute(rutubeUrl)}">Rutube</a>`,
+  ].filter(Boolean);
+
+  return [
+    '<div class="si-video-block">',
+    `<si-video ${attributes.join(' ')}><span class="si-video__fallback">Смотреть видео: ${links.join(' · ')}</span></si-video>`,
+    '</div>',
+  ].join('\n');
+}
+
+function rewriteVideos(markdown, title) {
+  return markdown.replace(/<iframe\b([^>]*)>\s*<\/iframe>/gi, (iframe, attributes) => {
+    const sourceMatch = attributes.match(/\bsrc\s*=\s*(["'])(.*?)\1/i);
+    if (!sourceMatch) return iframe;
+
+    try {
+      const rutubeUrl = new URL(decodeHtmlEntities(sourceMatch[2]));
+      if (rutubeUrl.hostname !== 'rutube.ru' && rutubeUrl.hostname !== 'www.rutube.ru') {
+        return iframe;
+      }
+
+      const rutubeId = rutubeUrl.pathname.match(
+        /^\/(?:video|play\/embed)\/([a-f0-9]{32})(?:\/|$)/i
+      )?.[1];
+      if (!rutubeId) return iframe;
+
+      return videoPlayerMarkup({
+        title,
+        rutubeUrl: rutubeUrl.toString(),
+        youtubeUrl: youtubeUrlForRutubeId(rutubeId),
+      });
+    } catch {
+      return iframe;
+    }
+  });
+}
+
 async function fetchJson(url) {
   const response = await fetch(url, {
     headers: {
@@ -259,6 +316,7 @@ async function importArticle(article, topicName, directory, routeMap) {
   markdown = removeLeadingTitle(markdown);
   markdown = promoteImportedHeadings(markdown);
   markdown = removeEmptyImages(markdown);
+  markdown = rewriteVideos(markdown, data.title);
   markdown = await rewriteImages(markdown, data.slug);
   markdown = rewriteHelpLinks(markdown, routeMap);
   markdown = rewriteSourceSiteLinks(markdown);
