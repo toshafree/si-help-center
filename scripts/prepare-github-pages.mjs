@@ -3,6 +3,7 @@ import path from 'node:path';
 
 const DIST_DIR = path.resolve('dist');
 const TEXT_EXTENSIONS = new Set(['.css', '.html', '.js', '.json', '.xml']);
+const RUNTIME_MANAGED_PREFIXES = new Set(['pagefind']);
 
 function escapeRegExp(value) {
   return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
@@ -57,7 +58,7 @@ async function main() {
   const rootEntries = await readdir(DIST_DIR, { withFileTypes: true });
   const rootUrlPrefixes = rootEntries
     .map((entry) => entry.name)
-    .filter((name) => !name.startsWith('.'));
+    .filter((name) => !name.startsWith('.') && !RUNTIME_MANAGED_PREFIXES.has(name));
   const files = await walk(DIST_DIR);
 
   for (const file of files) {
