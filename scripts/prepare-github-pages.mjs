@@ -40,6 +40,16 @@ function prefixRootUrls(value, base, prefixes) {
   return dedupeBaseUrls(value.replace(rootUrlPattern(base, prefixes), `$1${base}/`), base);
 }
 
+function cacheBustSearchScript(value) {
+  const revision = process.env.GITHUB_SHA?.slice(0, 12);
+  if (!revision) return value;
+
+  return value.replace(
+    /(src=["'][^"']*\/Search\.astro_[^"'?]+\.js)(?:\?[^"']*)?(["'])/g,
+    `$1?v=${revision}$2`,
+  );
+}
+
 async function walk(directory) {
   const files = [];
   for (const entry of await readdir(directory, { withFileTypes: true })) {
@@ -63,7 +73,8 @@ async function main() {
 
   for (const file of files) {
     const original = await readFile(file, 'utf8');
-    const next = prefixRootUrls(original, base, rootUrlPrefixes);
+    const prefixed = prefixRootUrls(original, base, rootUrlPrefixes);
+    const next = path.extname(file) === '.html' ? cacheBustSearchScript(prefixed) : prefixed;
     if (next !== original) await writeFile(file, next);
   }
 
