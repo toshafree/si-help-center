@@ -301,6 +301,7 @@ site-search button kbd {
   max-width: 100%;
   height: auto;
   aspect-ratio: 16 / 9;
+  border: 1px solid rgba(255, 255, 255, 0.28);
   border-radius: 0.85rem;
   background: #000;
   box-shadow: var(--si-shadow);
@@ -310,6 +311,10 @@ site-search button kbd {
   margin-block: 1.25rem 2rem;
 }
 
+.sl-markdown-content .si-video-block:has(si-video[youtube][rutube]) {
+  margin-top: 2.4rem;
+}
+
 .sl-markdown-content si-video {
   display: block;
   position: relative;
@@ -317,33 +322,31 @@ site-search button kbd {
 
 .si-video__toolbar {
   position: absolute;
-  z-index: 1;
-  top: 0.55rem;
-  left: 0.55rem;
+  z-index: 2;
+  top: 1px;
+  left: 0.75rem;
   display: flex;
+  transform: translateY(-100%);
 }
 
 .si-video__providers {
   display: inline-flex;
-  gap: 0.1rem;
-  padding: 0.15rem;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: 0.5rem;
-  background: rgba(17, 20, 27, 0.86);
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.28);
-  backdrop-filter: blur(8px);
+  align-items: flex-end;
+  gap: 0.25rem;
 }
 
 .si-video__provider {
-  padding: 0.3rem 0.5rem;
-  border: 0;
-  border-radius: 0.35rem;
-  background: transparent;
+  padding: 0.38rem 0.65rem 0.42rem;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-bottom: 0;
+  border-radius: 0.5rem 0.5rem 0 0;
+  background: rgba(25, 28, 36, 0.96);
   color: #c8cfdd;
   font: inherit;
   font-size: 0.75rem;
   font-weight: 700;
   line-height: 1;
+  box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.16);
   cursor: pointer;
 }
 
@@ -355,7 +358,7 @@ site-search button kbd {
 .si-video__provider[aria-pressed="true"] {
   background: var(--si-blue-strong);
   color: #ffffff;
-  box-shadow: 0 2px 7px rgba(18, 140, 255, 0.35);
+  box-shadow: 0 -3px 10px rgba(18, 140, 255, 0.28);
 }
 
 .si-video__provider:focus-visible {
