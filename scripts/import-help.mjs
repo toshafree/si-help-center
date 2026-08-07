@@ -8,7 +8,6 @@ const TOPICS_URL = `${SOURCE_ORIGIN}/api/get-topics`;
 const ARTICLE_URL = `${SOURCE_ORIGIN}/api/get-article-by-slug`;
 const DOCS_DIR = path.resolve('src/content/docs');
 const ASSETS_DIR = path.resolve('public/help-assets');
-const SIDEBAR_FILE = path.resolve('src/data/sidebar.mjs');
 const TOPICS_CACHE = path.resolve('.cache/spread-topics.json');
 
 const htmlEntities = {
@@ -32,6 +31,50 @@ const topicDirs = new Map([
   ['Как работает статистический арбитраж', 'stat-arbitrage'],
   ['Как работает платформа Spread Insight', 'platform'],
 ]);
+
+// The public knowledge-base structure is curated independently of the source API topics.
+// Keep imported articles in their new sections when `npm run import:help` is run again.
+const articlePaths = new Map([
+  ['overview', 'getting-started/interface-overview'],
+  ['screener', 'tools/stat-screener/screener'],
+  ['backtester', 'tools/stat-screener/backtester'],
+  ['notifications', 'tools/stat-screener/notifications'],
+  ['spread-collections', 'tools/spread-collections/overview'],
+  ['spread-builder', 'tools/spread-builder/overview'],
+  ['ai-assistant', 'tools/spread-builder/ai-assistant'],
+  ['crypto-review', 'tools/crypto-screener/overview'],
+  ['crypto-pair-types', 'strategies/crypto-arbitrage/types'],
+  ['crypto-strategy-diff', 'strategies/crypto-arbitrage/price-difference'],
+  ['crypto-strategy-fiunding', 'strategies/crypto-arbitrage/funding'],
+  ['crypto-funding', 'concepts/funding'],
+  ['crypto-arbitrage-profit-calculation', 'concepts/crypto-profit'],
+  ['para-one-industry', 'strategies/stat-arbitrage/industry-pair'],
+  ['priviledges', 'strategies/stat-arbitrage/ordinary-preferred'],
+  ['trading-idea-common-owner', 'strategies/stat-arbitrage/common-owner'],
+  ['trading-idea-cointegration', 'strategies/stat-arbitrage/cointegration-only'],
+  ['arbitrage-how-to', 'strategies/stat-arbitrage/price-divergence'],
+  ['find', 'technique/stat-arbitrage/find-pairs'],
+  ['profit-taking-methods', 'technique/stat-arbitrage/profit-taking'],
+  ['spread-chart', 'technique/spread-chart'],
+  ['cointegration', 'concepts/cointegration'],
+  ['bollinger-bands', 'concepts/bollinger-bands'],
+  ['optimal-position', 'concepts/optimal-position'],
+  ['std', 'concepts/standard-deviation'],
+]);
+
+function sectionForPath(articlePath, fallback) {
+  if (articlePath.startsWith('getting-started/')) return 'С чего начать';
+  if (articlePath.startsWith('tools/stat-screener/')) return 'Инструменты · Статистический скринер';
+  if (articlePath.startsWith('tools/crypto-screener/')) return 'Инструменты · Криптоскринер';
+  if (articlePath.startsWith('tools/spread-collections/')) return 'Инструменты · Коллекции спредов';
+  if (articlePath.startsWith('tools/spread-builder/')) return 'Инструменты · Конструктор спредов';
+  if (articlePath.startsWith('strategies/stat-arbitrage/')) return 'Стратегии и торговые идеи · Статистический арбитраж';
+  if (articlePath.startsWith('strategies/crypto-arbitrage/')) return 'Стратегии и торговые идеи · Криптоарбитраж';
+  if (articlePath.startsWith('technique/stat-arbitrage/')) return 'Техника · Статистический арбитраж';
+  if (articlePath.startsWith('technique/')) return 'Техника';
+  if (articlePath.startsWith('concepts/')) return 'Понятия и расчёты';
+  return fallback;
+}
 
 function decodeHtmlEntities(value) {
   return value.replace(/&([^;]+);/g, (match, entity) => htmlEntities[entity] ?? match);
@@ -128,12 +171,21 @@ function rewriteHelpLinks(markdown, routeMap) {
 
 function isDocsRootUrl(url) {
   return [
+    '/community/',
+    '/concepts/',
     '/crypto/',
+    '/getting-started/',
     '/help-assets/',
     '/ideas/',
+    '/literature/',
     '/platform/',
     '/start/',
     '/stat-arbitrage/',
+    '/strategies/',
+    '/technique/',
+    '/tools/',
+    '/webinars/',
+    '/whats-new/',
   ].some((prefix) => url.startsWith(prefix));
 }
 
@@ -248,53 +300,23 @@ async function fetchJson(url) {
   return response.json();
 }
 
-function buildSidebar(topics) {
-  const topicLabels = new Map([
-    ['Как пользоваться Spread Insight для поиска арбитражных возможностей', 'Быстрый старт'],
-    ['Криптоскринер для арбитража на фьючерсах', 'Криптоскринер'],
-    ['Торговые идеи для статистического арбитража', 'Торговые идеи'],
-    ['Как работает статистический арбитраж', 'Статистический арбитраж'],
-    ['Как работает платформа Spread Insight', 'Платформа'],
-  ]);
-
-  const groups = topics.map((topic) => {
-    const directory = topicDirs.get(topic.name) ?? topic.name.toLowerCase().replace(/[^a-z0-9]+/gi, '-');
-    return {
-      label: topicLabels.get(topic.name) ?? topic.name,
-      items: topic.articles.map((article) => ({
-        label: article.title,
-        slug: `${directory}/${article.slug}`,
-      })),
-    };
-  });
-
-  return [
-    { label: 'Главная', link: '/' },
-    ...groups,
-  ];
-}
-
 function buildRouteMap(topics) {
   const routes = new Map();
   for (const topic of topics) {
     const directory = topicDirs.get(topic.name) ?? topic.name.toLowerCase().replace(/[^a-z0-9]+/gi, '-');
     for (const article of topic.articles) {
-      routes.set(article.slug, `/${directory}/${article.slug}/`);
+      routes.set(article.slug, `/${articlePaths.get(article.slug) ?? `${directory}/${article.slug}`}/`);
     }
   }
   return routes;
-}
-
-function sidebarModule(sidebar) {
-  return `const sidebar = ${JSON.stringify(sidebar, null, 2)};\n\nexport default sidebar;\n`;
 }
 
 async function ensureDirs() {
   await mkdir(DOCS_DIR, { recursive: true });
   await mkdir(ASSETS_DIR, { recursive: true });
   await mkdir(path.dirname(TOPICS_CACHE), { recursive: true });
-  for (const dir of topicDirs.values()) {
-    await mkdir(path.join(DOCS_DIR, dir), { recursive: true });
+  for (const articlePath of articlePaths.values()) {
+    await mkdir(path.join(DOCS_DIR, path.dirname(articlePath)), { recursive: true });
   }
 }
 
@@ -309,7 +331,7 @@ async function loadTopics() {
   }
 }
 
-async function importArticle(article, topicName, directory, routeMap) {
+async function importArticle(article, topicName, articlePath, routeMap) {
   const originalUrl = `${SOURCE_ORIGIN}/help/${article.slug}`;
   const data = await fetchJson(`${ARTICLE_URL}?slug=${encodeURIComponent(article.slug)}`);
   let markdown = normalizeMarkdown(data.content ?? '');
@@ -322,8 +344,10 @@ async function importArticle(article, topicName, directory, routeMap) {
   markdown = rewriteSourceSiteLinks(markdown);
   markdown = appendNextLinks(markdown, data.description?.next, routeMap);
 
-  const output = `${frontmatter(data, topicName, originalUrl)}${markdown}\n`;
-  await writeFile(path.join(DOCS_DIR, directory, `${data.slug}.md`), output);
+  const output = `${frontmatter(data, sectionForPath(articlePath, topicName), originalUrl)}${markdown}\n`;
+  const outputPath = path.join(DOCS_DIR, `${articlePath}.md`);
+  await mkdir(path.dirname(outputPath), { recursive: true });
+  await writeFile(outputPath, output);
 
   return data.slug;
 }
@@ -336,15 +360,14 @@ async function main() {
   let importedCount = 0;
   for (const topic of topics) {
     const directory = topicDirs.get(topic.name) ?? topic.name.toLowerCase().replace(/[^a-z0-9]+/gi, '-');
-    await mkdir(path.join(DOCS_DIR, directory), { recursive: true });
 
     for (const article of topic.articles) {
-      await importArticle(article, topic.name, directory, routeMap);
+      const articlePath = articlePaths.get(article.slug) ?? `${directory}/${article.slug}`;
+      await importArticle(article, topic.name, articlePath, routeMap);
       importedCount += 1;
     }
   }
 
-  await writeFile(SIDEBAR_FILE, sidebarModule(buildSidebar(topics)));
   console.log(`Imported ${importedCount} articles from ${topics.length} topics.`);
 }
 
