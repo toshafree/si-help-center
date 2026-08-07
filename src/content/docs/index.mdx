@@ -1,47 +1,11 @@
 ---
 title: Центр знаний Spread Insight
-description: Справка по арбитражным стратегиям, скринерам, спредам, расчётам и инструментам Spread Insight.
-template: splash
-hero:
-  title: Центр знаний Spread Insight
-  tagline: От первой арбитражной сделки до собственных формул, коллекций спредов и межбиржевых стратегий.
-  image:
-    alt: Интерфейс Spread Insight
-    file: ../../assets/help/overview-1-overview-1.png
-  actions:
-    - text: Начать знакомство
-      link: /getting-started/what-is-spread-insight/
-      icon: right-arrow
-      variant: primary
-    - text: Spread Insight
-      link: https://spread-i.online/
-      icon: external
+description: Научитесь находить, проверять и рассчитывать арбитражные сделки с помощью инструментов Spread Insight.
+tableOfContents: false
+prev: false
+next: false
 ---
 
-import { Card, CardGrid } from '@astrojs/starlight/components';
+import HomePage from '../../components/HomePage.astro';
 
-## С чего начать
-
-<CardGrid>
-  <Card title="Что такое Spread Insight" icon="rocket">
-    Как платформа помогает найти расхождение, проверить гипотезу и рассчитать сделку. [Открыть статью](/getting-started/what-is-spread-insight/)
-  </Card>
-  <Card title="Первая сделка" icon="seti:check">
-    Пошаговый цикл от выбора пары до виртуального входа и контроля результата. [Открыть статью](/getting-started/first-trade/)
-  </Card>
-  <Card title="Инструменты" icon="magnifier">
-    Скринеры, бэктестер, калькулятор, коллекции спредов и Конструктор. [Перейти к обзору](/tools/stat-screener/overview/)
-  </Card>
-  <Card title="Вебинары" icon="seti:video">
-    Практические разборы фьючерсов, относительной стоимости и управления риском. [Смотреть вебинары](/webinars/futures-practice/)
-  </Card>
-</CardGrid>
-
-## Как это работает
-
-1. Подберите связанную пару или готовую арбитражную конструкцию.
-2. Проверьте экономический смысл, историю и доступную ликвидность.
-3. Рассчитайте направления и размеры ног, комиссии и риск.
-4. Настройте уведомления на вход и выход.
-
-В разделе [«Понятия и расчёты»](/concepts/cointegration/) собраны объяснения ключевых показателей, а в [«Что нового»](/whats-new/v1-6-1-collections/) — короткие видео о релизах платформы.
+<HomePage />

@@ -1,0 +1,122 @@
+---
+import { Icon } from '@astrojs/starlight/components';
+---
+
+<button
+  class="si-home-search"
+  type="button"
+  data-home-search
+  aria-label="Найти статью или ответ"
+  aria-haspopup="dialog"
+>
+  <Icon name="magnifier" />
+  <span>Найти статью или ответ</span>
+  <kbd><span data-home-search-key>Ctrl</span><span>K</span></kbd>
+</button>
+
+<script>
+  const initializeHomeSearch = () => {
+    const homeSearchButtons = document.querySelectorAll<HTMLButtonElement>('[data-home-search]');
+
+    for (const button of homeSearchButtons) {
+      if (button.dataset.homeSearchReady !== undefined) continue;
+      button.dataset.homeSearchReady = '';
+
+      const shortcutKey = button.querySelector<HTMLElement>('[data-home-search-key]');
+      const isApplePlatform = /(Mac|iPhone|iPod|iPad)/i.test(navigator.platform);
+
+      if (shortcutKey && isApplePlatform) shortcutKey.textContent = '⌘';
+
+      button.addEventListener('click', () => {
+        const headerSearchButton = document.querySelector<HTMLButtonElement>(
+          'site-search button[data-open-modal]',
+        );
+        headerSearchButton?.click();
+      });
+    }
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeHomeSearch, { once: true });
+  } else {
+    initializeHomeSearch();
+  }
+</script>
+
+<style>
+  .si-home-search {
+    display: flex;
+    width: min(100%, 46rem);
+    min-height: 3.75rem;
+    align-items: center;
+    gap: 0.8rem;
+    margin-top: 1.75rem;
+    padding: 0.75rem 0.85rem 0.75rem 1rem;
+    border: 1px solid var(--si-border);
+    border-radius: 0.8rem;
+    background: color-mix(in srgb, var(--sl-color-bg), var(--sl-color-bg-nav) 34%);
+    color: var(--sl-color-gray-2);
+    font: inherit;
+    font-size: 1rem;
+    text-align: left;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    cursor: pointer;
+    transition: border-color 160ms ease, background-color 160ms ease, box-shadow 160ms ease;
+  }
+
+  .si-home-search:hover {
+    border-color: color-mix(in srgb, var(--si-blue), transparent 30%);
+    background: var(--si-panel-strong);
+    color: var(--sl-color-white);
+    box-shadow: 0 12px 34px rgba(0, 0, 0, 0.16);
+  }
+
+  .si-home-search:focus-visible {
+    outline: 3px solid color-mix(in srgb, var(--si-blue), transparent 30%);
+    outline-offset: 3px;
+  }
+
+  .si-home-search :global(svg) {
+    width: 1.25rem;
+    height: 1.25rem;
+    flex: 0 0 auto;
+    color: var(--si-blue);
+  }
+
+  .si-home-search > span {
+    overflow: hidden;
+    flex: 1;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .si-home-search kbd {
+    display: inline-flex;
+    flex: 0 0 auto;
+    gap: 0.18rem;
+    padding: 0.32rem 0.48rem;
+    border: 1px solid var(--si-border);
+    border-radius: 0.38rem;
+    background: var(--si-panel);
+    color: var(--sl-color-gray-3);
+    font-family: var(--sl-font);
+    font-size: 0.72rem;
+    line-height: 1;
+  }
+
+  :global(:root[data-theme='light']) .si-home-search {
+    background: #ffffff;
+    box-shadow: 0 10px 30px rgba(29, 48, 77, 0.08);
+  }
+
+  @media (max-width: 30rem) {
+    .si-home-search {
+      min-height: 3.35rem;
+      margin-top: 1.4rem;
+    }
+
+    .si-home-search kbd {
+      display: none;
+    }
+  }
+</style>

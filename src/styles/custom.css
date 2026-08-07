@@ -377,6 +377,81 @@ html:not([data-has-hero]) .content-panel:first-of-type + .content-panel {
   color: var(--sl-color-gray-4);
 }
 
+.si-home-hero {
+  max-width: 68rem;
+}
+
+.si-home-hero h1,
+.si-home-hero__summary {
+  margin: 0;
+}
+
+.si-home-hero h1 {
+  max-width: 30ch;
+  color: var(--sl-color-white);
+  font-size: clamp(2.15rem, 4vw, 2.625rem);
+  font-weight: 760;
+  line-height: 1.1;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+
+.si-home-hero__summary {
+  max-width: 47rem;
+  margin-top: 0.8rem;
+  color: var(--sl-color-gray-2);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  text-wrap: pretty;
+}
+
+.si-home-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-top: 0.85rem;
+}
+
+.si-home-hero__action {
+  display: inline-flex;
+  min-height: 2.65rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  padding: 0.55rem 0.9rem;
+  border: 1px solid var(--si-border);
+  border-radius: 0.62rem;
+  background: var(--si-panel);
+  color: var(--sl-color-white);
+  font-size: 0.88rem;
+  font-weight: 700;
+  line-height: 1.25;
+  text-decoration: none;
+}
+
+.si-home-hero__action:hover {
+  border-color: color-mix(in srgb, var(--si-blue), transparent 35%);
+  background: var(--si-panel-strong);
+  color: var(--si-blue);
+}
+
+.si-home-hero__action:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--si-blue), transparent 28%);
+  outline-offset: 3px;
+}
+
+.si-home-hero__action--primary {
+  border-color: var(--si-blue-strong);
+  background: var(--si-blue-strong);
+  color: #fff;
+}
+
+.si-home-hero__action--primary:hover {
+  border-color: var(--si-blue);
+  background: var(--si-blue);
+  color: #fff;
+}
+
 .sl-markdown-content {
   font-size: 1.0625rem;
   line-height: 1.72;
@@ -642,6 +717,14 @@ html:not([data-has-hero]) .content-panel:first-of-type + .content-panel {
     max-inline-size: 100%;
     overflow-wrap: break-word;
     text-wrap: balance;
+  }
+
+  .si-home-hero h1 {
+    font-size: clamp(1.9rem, 8vw, 2.15rem);
+  }
+
+  .si-home-hero__summary {
+    font-size: 1rem;
   }
 
   .sl-markdown-content {

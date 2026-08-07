@@ -1,6 +1,9 @@
 ---
+import HomeSearch from './HomeSearch.astro';
+
 const { entry } = Astro.locals.starlightRoute;
 const { title, description } = entry.data;
+const isHomePage = title === 'Центр знаний Spread Insight';
 
 const sectionLabels: Record<string, string> = {
   community: 'Сообщество',
@@ -47,15 +50,36 @@ if (descriptionParts.length > 1) {
 }
 ---
 
-<header class="si-article-header">
-  {eyebrow && <p class="si-article-header__eyebrow">{eyebrow}</p>}
-  <h1 id="_top">{title}</h1>
-  {summary && <p class="si-article-header__summary">{summary}</p>}
-  {
-    details.length > 0 && (
-      <p class="si-article-header__details">
-        {details.map((detail) => <span>{detail}</span>)}
-      </p>
-    )
-  }
-</header>
+{
+  isHomePage ? (
+    <header class="si-home-hero">
+      <h1 id="_top">{title}</h1>
+      {description && <p class="si-home-hero__summary">{description}</p>}
+      <HomeSearch />
+      <div class="si-home-hero__actions">
+        <a class="si-home-hero__action si-home-hero__action--primary" href="/getting-started/what-is-spread-insight/">
+          Начать знакомство
+        </a>
+        <a
+          class="si-home-hero__action"
+          href="https://spread-i.online/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Открыть Spread Insight <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </header>
+  ) : (
+    <header class="si-article-header">
+      {eyebrow && <p class="si-article-header__eyebrow">{eyebrow}</p>}
+      <h1 id="_top">{title}</h1>
+      {summary && <p class="si-article-header__summary">{summary}</p>}
+      {details.length > 0 && (
+        <p class="si-article-header__details">
+          {details.map((detail) => <span>{detail}</span>)}
+        </p>
+      )}
+    </header>
+  )
+}

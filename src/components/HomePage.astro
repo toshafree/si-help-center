@@ -1,0 +1,784 @@
+---
+import { Icon } from '@astrojs/starlight/components';
+
+const startSteps = [
+  {
+    title: 'Что такое Spread Insight',
+    description: 'Узнайте, какие задачи решает платформа и как устроен рабочий цикл.',
+    href: '/getting-started/what-is-spread-insight/',
+  },
+  {
+    title: 'Обзор интерфейса',
+    description: 'Разберитесь с основными разделами и элементами интерфейса.',
+    href: '/getting-started/interface-overview/',
+  },
+  {
+    title: 'Что такое арбитраж',
+    description: 'Поймите логику сделок на относительной цене связанных инструментов.',
+    href: '/getting-started/what-is-arbitrage/',
+  },
+  {
+    title: 'Первая арбитражная сделка',
+    description: 'Пройдите путь от выбора пары до расчёта и контроля результата.',
+    href: '/getting-started/first-trade/',
+  },
+];
+
+const tools = [
+  {
+    title: 'Статистический скринер',
+    description: 'Найдите связанную пару, проверьте историю и рассчитайте сделку.',
+    href: '/tools/stat-screener/overview/',
+    icon: 'magnifier',
+    links: [
+      { label: 'Скринер', href: '/tools/stat-screener/screener/' },
+      { label: 'Бэктестер', href: '/tools/stat-screener/backtester/' },
+      { label: 'Калькулятор', href: '/tools/stat-screener/calculator/' },
+    ],
+  },
+  {
+    title: 'Криптоскринер',
+    description: 'Отслеживайте расхождения цен и фандинга между биржами и контрактами.',
+    href: '/tools/crypto-screener/overview/',
+    icon: 'random',
+    links: [],
+  },
+  {
+    title: 'Коллекции спредов',
+    description: 'Собирайте конструкции в рабочие пространства и персональные скринеры.',
+    href: '/tools/spread-collections/overview/',
+    icon: 'list-format',
+    links: [
+      { label: 'Свой скринер за 5 минут', href: '/tools/spread-collections/custom-screener/' },
+    ],
+  },
+  {
+    title: 'Конструктор спредов',
+    description: 'Создавайте собственные конструкции и рассчитывайте показатели формулами.',
+    href: '/tools/spread-builder/overview/',
+    icon: 'puzzle',
+    links: [{ label: 'Возможности формул', href: '/tools/spread-builder/formulas/' }],
+  },
+] as const;
+
+const strategies = [
+  {
+    title: 'Статистический арбитраж',
+    description:
+      'Стратегии на временном расхождении связанных инструментов и возврате их соотношения к нормальному уровню.',
+    links: [
+      {
+        label: 'Расхождение цен двух акций',
+        href: '/strategies/stat-arbitrage/price-divergence/',
+      },
+      { label: 'Компании одной отрасли', href: '/strategies/stat-arbitrage/industry-pair/' },
+      {
+        label: 'Обыкновенные и привилегированные акции',
+        href: '/strategies/stat-arbitrage/ordinary-preferred/',
+      },
+    ],
+  },
+  {
+    title: 'Криптоарбитраж',
+    description:
+      'Стратегии на разнице цен, типов контрактов и ставок фандинга на криптовалютных рынках.',
+    links: [
+      { label: 'Виды арбитража на крипте', href: '/strategies/crypto-arbitrage/types/' },
+      { label: 'Арбитраж на разнице цен', href: '/strategies/crypto-arbitrage/price-difference/' },
+      { label: 'Стратегия сбора фандинга', href: '/strategies/crypto-arbitrage/funding/' },
+    ],
+  },
+] as const;
+
+const webinars = [
+  {
+    title: 'Как инвестору получить преимущество с помощью арбитражного скринера',
+    speakers: 'Евгений Аксельрот и Антон Соловьев',
+    duration: '48 мин',
+    href: '/webinars/investor-advantage/',
+    image: 'https://i.ytimg.com/vi/GVH2Ek2Sx84/maxresdefault.jpg',
+  },
+  {
+    title: 'Практика по фьючерсам: арбитражные стратегии и обзор Spread Insight',
+    speakers: 'Алексей Адамович и Антон Соловьев',
+    duration: '1 ч 37 мин',
+    href: '/webinars/futures-practice/',
+    image: 'https://i.ytimg.com/vi/nuYZz681v6U/maxresdefault.jpg',
+  },
+];
+---
+
+<div class="si-home not-content">
+  <section class="si-home-section" aria-labelledby="si-home-start">
+    <div class="si-home-section__header">
+      <div>
+        <p class="si-home-section__eyebrow">Первое знакомство</p>
+        <h2 id="si-home-start">С чего начать</h2>
+      </div>
+      <p>Четыре коротких шага от знакомства с платформой до первой учебной сделки.</p>
+    </div>
+
+    <ol class="si-home-grid si-home-grid--steps">
+      {
+        startSteps.map((step, index) => (
+          <li>
+            <a class="si-home-step" href={step.href}>
+              <span class="si-home-step__number" aria-hidden="true">
+                {String(index + 1).padStart(2, '0')}
+              </span>
+              <span class="si-home-step__content">
+                <strong>{step.title}</strong>
+                <span>{step.description}</span>
+              </span>
+              <Icon name="right-arrow" />
+            </a>
+          </li>
+        ))
+      }
+    </ol>
+  </section>
+
+  <section class="si-home-section" aria-labelledby="si-home-tools">
+    <div class="si-home-section__header">
+      <div>
+        <p class="si-home-section__eyebrow">Рабочее пространство</p>
+        <h2 id="si-home-tools">Инструменты</h2>
+      </div>
+      <p>Выберите направление под свою задачу и перейдите к обзору возможностей.</p>
+    </div>
+
+    <div class="si-home-grid si-home-grid--tools">
+      {
+        tools.map((tool) => (
+          <article class="si-home-tool">
+            <div class="si-home-tool__icon" aria-hidden="true">
+              <Icon name={tool.icon} />
+            </div>
+            <h3><a href={tool.href}>{tool.title}</a></h3>
+            <p>{tool.description}</p>
+            {tool.links.length > 0 && (
+              <nav aria-label={`Материалы: ${tool.title}`}>
+                {tool.links.map((link) => <a href={link.href}>{link.label}</a>)}
+              </nav>
+            )}
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="si-home-section" aria-labelledby="si-home-strategies">
+    <div class="si-home-section__header">
+      <div>
+        <p class="si-home-section__eyebrow">Практические сценарии</p>
+        <h2 id="si-home-strategies">Торговые стратегии</h2>
+      </div>
+      <p>Начните с понятной рыночной идеи, затем переходите к проверке и расчёту.</p>
+    </div>
+
+    <div class="si-home-grid si-home-grid--strategies">
+      {
+        strategies.map((strategy) => (
+          <article class="si-home-strategy">
+            <h3>{strategy.title}</h3>
+            <p>{strategy.description}</p>
+            <ul>
+              {strategy.links.map((link) => (
+                <li>
+                  <a href={link.href}>
+                    <span>{link.label}</span>
+                    <Icon name="right-caret" />
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="si-home-section" aria-labelledby="si-home-webinars">
+    <div class="si-home-section__header">
+      <div>
+        <p class="si-home-section__eyebrow">Видеоразборы</p>
+        <h2 id="si-home-webinars">Вебинары</h2>
+      </div>
+      <p>Практика работы с арбитражными идеями, фьючерсами и относительной стоимостью.</p>
+    </div>
+
+    <div class="si-home-grid si-home-grid--webinars">
+      {
+        webinars.map((webinar) => (
+          <article class="si-home-webinar">
+            <a class="si-home-webinar__image" href={webinar.href}>
+              <img
+                src={webinar.image}
+                alt={`Обложка вебинара «${webinar.title}»`}
+                width="1280"
+                height="720"
+                loading="lazy"
+                decoding="async"
+              />
+              <span class="si-home-webinar__play" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="m9 7 8 5-8 5V7Z" /></svg>
+              </span>
+            </a>
+            <div class="si-home-webinar__content">
+              <p class="si-home-webinar__meta">Вебинар · {webinar.duration}</p>
+              <h3><a href={webinar.href}>{webinar.title}</a></h3>
+              <p>{webinar.speakers}</p>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="si-home-community" aria-labelledby="si-home-community">
+    <div class="si-home-community__intro">
+      <p class="si-home-section__eyebrow">Обратная связь</p>
+      <h2 id="si-home-community">Сообщество</h2>
+      <p>Следите за новыми материалами, задавайте вопросы и помогайте развивать Spread Insight.</p>
+    </div>
+
+    <div class="si-home-community__channels" aria-label="Каналы Spread Insight">
+      <a href="https://t.me/spread_insight_online" target="_blank" rel="noopener noreferrer">
+        <Icon name="telegram" /><span>Telegram</span>
+      </a>
+      <a href="https://www.youtube.com/@spreadinsight" target="_blank" rel="noopener noreferrer">
+        <Icon name="youtube" /><span>YouTube</span>
+      </a>
+      <a href="https://rutube.ru/channel/58023809/" target="_blank" rel="noopener noreferrer">
+        <Icon name="seti:video" /><span>Rutube</span>
+      </a>
+    </div>
+
+    <div class="si-home-community__actions">
+      <a
+        class="si-home-community__action si-home-community__action--primary"
+        href="https://calendly.com/7641109/30min"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Назначить встречу
+      </a>
+      <a
+        class="si-home-community__action"
+        href="https://ankt.cc/fs8ASw"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Пройти опрос
+      </a>
+    </div>
+  </section>
+</div>
+
+<style>
+  :global(html:has(.si-home)) {
+    --sl-content-width: 68rem;
+  }
+
+  :global(html:has(.si-home) .content-panel:first-of-type) {
+    padding-top: clamp(2.4rem, 5vw, 4.25rem);
+  }
+
+  :global(html:has(.si-home) .content-panel:first-of-type + .content-panel) {
+    padding-top: clamp(2.5rem, 4vw, 3.5rem);
+  }
+
+  :global(html:has(.si-home) .pagination-links) {
+    display: none;
+  }
+
+  .si-home {
+    display: grid;
+    gap: clamp(3.25rem, 7vw, 5.5rem);
+    padding-bottom: clamp(3rem, 6vw, 5rem);
+    color: var(--sl-color-text);
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .si-home :where(h2, h3, p, ol, ul) {
+    margin: 0;
+  }
+
+  .si-home :where(a) {
+    text-decoration: none;
+  }
+
+  .si-home-section {
+    min-width: 0;
+  }
+
+  .si-home-section__header {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(16rem, 26rem);
+    gap: 1.5rem 3rem;
+    align-items: end;
+    margin-bottom: 1.45rem;
+  }
+
+  .si-home-section__eyebrow {
+    color: var(--si-blue);
+    font-size: 0.75rem;
+    font-weight: 750;
+    line-height: 1.4;
+    letter-spacing: 0.085em;
+    text-transform: uppercase;
+  }
+
+  .si-home-section__header h2,
+  .si-home-community h2 {
+    margin-top: 0.38rem;
+    color: var(--sl-color-white);
+    font-size: clamp(1.55rem, 3vw, 1.78rem);
+    font-weight: 720;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+
+  .si-home-section__header > p {
+    color: var(--sl-color-gray-3);
+    font-size: 0.96rem;
+    line-height: 1.55;
+  }
+
+  .si-home-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.9rem;
+    padding: 0;
+    list-style: none;
+  }
+
+  .si-home-step,
+  .si-home-tool,
+  .si-home-strategy,
+  .si-home-webinar {
+    border: 1px solid var(--si-border);
+    border-radius: 0.8rem;
+    background: var(--si-panel);
+  }
+
+  .si-home-step {
+    display: grid;
+    min-height: 8rem;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: 0.9rem;
+    align-items: start;
+    padding: 1.15rem;
+    color: var(--sl-color-white);
+    transition: border-color 160ms ease, background-color 160ms ease, transform 160ms ease;
+  }
+
+  .si-home-step:hover {
+    border-color: color-mix(in srgb, var(--si-blue), transparent 35%);
+    background: var(--si-panel-strong);
+    color: var(--sl-color-white);
+    transform: translateY(-2px);
+  }
+
+  .si-home-step:focus-visible,
+  .si-home-tool a:focus-visible,
+  .si-home-strategy a:focus-visible,
+  .si-home-webinar a:focus-visible,
+  .si-home-community a:focus-visible {
+    outline: 3px solid color-mix(in srgb, var(--si-blue), transparent 28%);
+    outline-offset: 3px;
+  }
+
+  .si-home-step__number {
+    display: inline-flex;
+    width: 2rem;
+    height: 2rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.55rem;
+    background: color-mix(in srgb, var(--si-blue), transparent 84%);
+    color: var(--si-blue);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+  }
+
+  .si-home-step__content {
+    display: grid;
+    gap: 0.42rem;
+  }
+
+  .si-home-step__content strong {
+    font-size: 1.03rem;
+    line-height: 1.35;
+  }
+
+  .si-home-step__content > span {
+    color: var(--sl-color-gray-3);
+    font-size: 0.91rem;
+    line-height: 1.5;
+  }
+
+  .si-home-step > :global(svg) {
+    width: 1rem;
+    height: 1rem;
+    margin-top: 0.48rem;
+    color: var(--sl-color-gray-4);
+    transition: color 160ms ease, transform 160ms ease;
+  }
+
+  .si-home-step:hover > :global(svg) {
+    color: var(--si-blue);
+    transform: translateX(0.15rem);
+  }
+
+  .si-home-tool {
+    display: grid;
+    min-height: 13.25rem;
+    grid-template-columns: auto minmax(0, 1fr);
+    grid-template-rows: auto auto 1fr auto;
+    gap: 0 0.8rem;
+    padding: 1.25rem;
+  }
+
+  .si-home-tool__icon {
+    display: inline-flex;
+    width: 2.1rem;
+    height: 2.1rem;
+    grid-row: 1 / span 2;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.58rem;
+    background: color-mix(in srgb, var(--si-blue), transparent 84%);
+    color: var(--si-blue);
+  }
+
+  .si-home-tool__icon :global(svg) {
+    width: 1.1rem;
+    height: 1.1rem;
+  }
+
+  .si-home-tool h3,
+  .si-home-strategy h3,
+  .si-home-webinar h3 {
+    color: var(--sl-color-white);
+    font-size: 1.08rem;
+    font-weight: 720;
+    line-height: 1.35;
+    letter-spacing: -0.01em;
+  }
+
+  .si-home-tool h3 a,
+  .si-home-webinar h3 a {
+    color: inherit;
+  }
+
+  .si-home-tool h3 a:hover,
+  .si-home-webinar h3 a:hover {
+    color: var(--si-blue);
+  }
+
+  .si-home-tool > p {
+    grid-column: 2;
+    margin-top: 0.38rem;
+    color: var(--sl-color-gray-3);
+    font-size: 0.91rem;
+    line-height: 1.5;
+  }
+
+  .si-home-tool nav {
+    display: flex;
+    grid-column: 1 / -1;
+    flex-wrap: wrap;
+    gap: 0.42rem;
+    align-self: end;
+    margin-top: 1.05rem;
+  }
+
+  .si-home-tool nav a {
+    padding: 0.32rem 0.55rem;
+    border: 1px solid var(--si-border);
+    border-radius: 999px;
+    color: var(--sl-color-gray-2);
+    font-size: 0.77rem;
+    font-weight: 650;
+    line-height: 1.25;
+  }
+
+  .si-home-tool nav a:hover {
+    border-color: color-mix(in srgb, var(--si-blue), transparent 45%);
+    color: var(--si-blue);
+  }
+
+  .si-home-strategy {
+    padding: 1.35rem;
+  }
+
+  .si-home-strategy > p {
+    min-height: 4.65rem;
+    margin-top: 0.5rem;
+    color: var(--sl-color-gray-3);
+    font-size: 0.92rem;
+    line-height: 1.55;
+  }
+
+  .si-home-strategy ul {
+    margin-top: 1.1rem;
+    padding: 0;
+    border-top: 1px solid var(--si-border);
+    list-style: none;
+  }
+
+  .si-home-strategy li + li {
+    border-top: 1px solid var(--si-border);
+  }
+
+  .si-home-strategy li a {
+    display: flex;
+    min-height: 2.8rem;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    color: var(--sl-color-gray-2);
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+
+  .si-home-strategy li a:hover {
+    color: var(--si-blue);
+  }
+
+  .si-home-strategy li :global(svg) {
+    width: 0.85rem;
+    height: 0.85rem;
+    flex: 0 0 auto;
+  }
+
+  .si-home-webinar {
+    overflow: hidden;
+  }
+
+  .si-home-webinar__image {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 16 / 9;
+    border-bottom: 1px solid var(--si-border);
+    background: #0b0e14;
+  }
+
+  .si-home-webinar__image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    border-radius: 0;
+    object-fit: cover;
+    box-shadow: none;
+    transition: transform 240ms ease, opacity 240ms ease;
+  }
+
+  .si-home-webinar__image:hover img {
+    opacity: 0.88;
+    transform: scale(1.015);
+  }
+
+  .si-home-webinar__play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: inline-flex;
+    width: 3rem;
+    height: 3rem;
+    align-items: center;
+    justify-content: center;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: rgba(18, 140, 255, 0.92);
+    color: #fff;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  }
+
+  .si-home-webinar__play svg {
+    width: 1.4rem;
+    height: 1.4rem;
+    fill: currentColor;
+  }
+
+  .si-home-webinar__content {
+    padding: 1.1rem 1.2rem 1.2rem;
+  }
+
+  .si-home-webinar__meta {
+    margin-bottom: 0.4rem;
+    color: var(--si-blue);
+    font-size: 0.74rem;
+    font-weight: 750;
+    line-height: 1.4;
+    letter-spacing: 0.045em;
+    text-transform: uppercase;
+  }
+
+  .si-home-webinar__content > p:last-child {
+    margin-top: 0.5rem;
+    color: var(--sl-color-gray-3);
+    font-size: 0.86rem;
+    line-height: 1.45;
+  }
+
+  .si-home-community {
+    display: grid;
+    grid-template-columns: minmax(15rem, 1.3fr) minmax(14rem, 1fr);
+    gap: 1.35rem 2.5rem;
+    align-items: center;
+    padding: clamp(1.35rem, 3vw, 2rem);
+    border: 1px solid var(--si-border);
+    border-radius: 0.9rem;
+    background: var(--si-panel);
+  }
+
+  .si-home-community__intro > p:last-child {
+    max-width: 35rem;
+    margin-top: 0.55rem;
+    color: var(--sl-color-gray-3);
+    font-size: 0.94rem;
+    line-height: 1.55;
+  }
+
+  .si-home-community__channels {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.5rem;
+  }
+
+  .si-home-community__channels a {
+    display: flex;
+    min-height: 3rem;
+    align-items: center;
+    justify-content: center;
+    gap: 0.42rem;
+    padding: 0.55rem;
+    border: 1px solid var(--si-border);
+    border-radius: 0.65rem;
+    background: var(--si-panel-strong);
+    color: var(--sl-color-gray-2);
+    font-size: 0.82rem;
+    font-weight: 700;
+  }
+
+  .si-home-community__channels a:hover {
+    border-color: color-mix(in srgb, var(--si-blue), transparent 40%);
+    color: var(--si-blue);
+  }
+
+  .si-home-community__channels :global(svg) {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .si-home-community__actions {
+    display: flex;
+    grid-column: 1 / -1;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    padding-top: 1.15rem;
+    border-top: 1px solid var(--si-border);
+  }
+
+  .si-home-community__action {
+    display: inline-flex;
+    min-height: 2.65rem;
+    align-items: center;
+    justify-content: center;
+    padding: 0.55rem 0.9rem;
+    border: 1px solid var(--si-border);
+    border-radius: 0.62rem;
+    background: var(--si-panel-strong);
+    color: var(--sl-color-white);
+    font-size: 0.88rem;
+    font-weight: 700;
+  }
+
+  .si-home-community__action:hover {
+    border-color: color-mix(in srgb, var(--si-blue), transparent 35%);
+    color: var(--si-blue);
+  }
+
+  .si-home-community__action--primary {
+    border-color: var(--si-blue-strong);
+    background: var(--si-blue-strong);
+    color: #fff;
+  }
+
+  .si-home-community__action--primary:hover {
+    border-color: var(--si-blue);
+    background: var(--si-blue);
+    color: #fff;
+  }
+
+  :global(:root[data-theme='light']) .si-home-step,
+  :global(:root[data-theme='light']) .si-home-tool,
+  :global(:root[data-theme='light']) .si-home-strategy,
+  :global(:root[data-theme='light']) .si-home-webinar,
+  :global(:root[data-theme='light']) .si-home-community {
+    background: rgba(255, 255, 255, 0.72);
+  }
+
+  @media (max-width: 64rem) {
+    .si-home-section__header {
+      grid-template-columns: 1fr;
+      gap: 0.55rem;
+    }
+
+    .si-home-section__header > p {
+      max-width: 38rem;
+    }
+  }
+
+  @media (max-width: 42rem) {
+    .si-home {
+      gap: 3.25rem;
+    }
+
+    .si-home-grid,
+    .si-home-community {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .si-home-step {
+      min-height: 0;
+    }
+
+    .si-home-tool {
+      min-height: 12rem;
+    }
+
+    .si-home-strategy > p {
+      min-height: 0;
+    }
+
+    .si-home-community__channels {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 27rem) {
+    .si-home-step {
+      grid-template-columns: auto minmax(0, 1fr);
+    }
+
+    .si-home-step > :global(svg) {
+      display: none;
+    }
+
+    .si-home-community__channels {
+      grid-template-columns: 1fr;
+    }
+
+    .si-home-community__actions,
+    .si-home-community__action {
+      width: 100%;
+    }
+  }
+</style>
