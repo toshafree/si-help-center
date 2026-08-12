@@ -27,7 +27,12 @@ import { Icon } from '@astrojs/starlight/components';
 
       if (shortcutKey && isApplePlatform) shortcutKey.textContent = '⌘';
 
-      button.addEventListener('click', () => {
+      button.addEventListener('click', (event) => {
+        // Starlight closes the search dialog on any window click outside it.
+        // Stop this originating click before forwarding it to the header button,
+        // otherwise the dialog opens and immediately closes again.
+        event.stopPropagation();
+
         const headerSearchButton = document.querySelector<HTMLButtonElement>(
           'site-search button[data-open-modal]',
         );
