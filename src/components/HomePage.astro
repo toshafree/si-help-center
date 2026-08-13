@@ -322,7 +322,7 @@ const webinars = [
   }
 
   .si-home-section__eyebrow {
-    color: var(--si-blue);
+    color: var(--si-link);
     font-size: 0.75rem;
     font-weight: 750;
     line-height: 1.4;
@@ -371,14 +371,14 @@ const webinars = [
     gap: 0.9rem;
     align-items: start;
     padding: 1.15rem;
-    color: var(--sl-color-white);
+    color: var(--si-link);
     transition: border-color 160ms ease, background-color 160ms ease, transform 160ms ease;
   }
 
   .si-home-step:hover {
     border-color: color-mix(in srgb, var(--si-blue), transparent 35%);
     background: var(--si-panel-raised);
-    color: var(--sl-color-white);
+    color: var(--si-link-hover);
     transform: translateY(-2px);
   }
 
@@ -472,12 +472,12 @@ const webinars = [
 
   .si-home-tool h3 a,
   .si-home-webinar h3 a {
-    color: inherit;
+    color: var(--si-link);
   }
 
   .si-home-tool h3 a:hover,
   .si-home-webinar h3 a:hover {
-    color: var(--si-blue);
+    color: var(--si-link-hover);
   }
 
   .si-home-tool > p {
@@ -501,15 +501,15 @@ const webinars = [
     padding: 0.32rem 0.55rem;
     border: 1px solid var(--si-border);
     border-radius: 999px;
-    color: var(--sl-color-gray-2);
+    color: var(--si-link);
     font-size: 0.77rem;
     font-weight: 650;
     line-height: 1.25;
   }
 
   .si-home-tool nav a:hover {
-    border-color: color-mix(in srgb, var(--si-blue), transparent 45%);
-    color: var(--si-blue);
+    border-color: color-mix(in srgb, var(--si-link), transparent 45%);
+    color: var(--si-link-hover);
   }
 
   .si-home-strategy {
@@ -541,13 +541,13 @@ const webinars = [
     align-items: center;
     justify-content: space-between;
     gap: 0.75rem;
-    color: var(--sl-color-gray-2);
+    color: var(--si-link);
     font-size: 0.9rem;
     line-height: 1.4;
   }
 
   .si-home-strategy li a:hover {
-    color: var(--si-blue);
+    color: var(--si-link-hover);
   }
 
   .si-home-strategy li :global(svg) {
@@ -613,7 +613,7 @@ const webinars = [
 
   .si-home-webinar__meta {
     margin-bottom: 0.4rem;
-    color: var(--si-blue);
+    color: var(--si-link);
     font-size: 0.74rem;
     font-weight: 750;
     line-height: 1.4;
@@ -664,14 +664,14 @@ const webinars = [
     border: 1px solid var(--si-border);
     border-radius: 0.65rem;
     background: var(--si-panel-strong);
-    color: var(--sl-color-gray-2);
+    color: var(--si-link);
     font-size: 0.82rem;
     font-weight: 700;
   }
 
   .si-home-community__channels a:hover {
-    border-color: color-mix(in srgb, var(--si-blue), transparent 40%);
-    color: var(--si-blue);
+    border-color: color-mix(in srgb, var(--si-link), transparent 40%);
+    color: var(--si-link-hover);
   }
 
   .si-home-community__channels :global(svg) {
@@ -697,14 +697,14 @@ const webinars = [
     border: 1px solid var(--si-border);
     border-radius: 0.62rem;
     background: var(--si-panel-strong);
-    color: var(--sl-color-white);
+    color: var(--si-link);
     font-size: 0.88rem;
     font-weight: 700;
   }
 
   .si-home-community__action:hover {
-    border-color: color-mix(in srgb, var(--si-blue), transparent 35%);
-    color: var(--si-blue);
+    border-color: color-mix(in srgb, var(--si-link), transparent 35%);
+    color: var(--si-link-hover);
   }
 
   .si-home-community__action--primary {
