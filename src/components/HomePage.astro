@@ -361,6 +361,7 @@ const webinars = [
     border: 1px solid var(--si-border);
     border-radius: 0.8rem;
     background: var(--si-panel);
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08);
   }
 
   .si-home-step {
@@ -376,7 +377,7 @@ const webinars = [
 
   .si-home-step:hover {
     border-color: color-mix(in srgb, var(--si-blue), transparent 35%);
-    background: var(--si-panel-strong);
+    background: var(--si-panel-raised);
     color: var(--sl-color-white);
     transform: translateY(-2px);
   }
@@ -636,6 +637,7 @@ const webinars = [
     border: 1px solid var(--si-border);
     border-radius: 0.9rem;
     background: var(--si-panel);
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08);
   }
 
   .si-home-community__intro > p:last-child {
@@ -706,15 +708,15 @@ const webinars = [
   }
 
   .si-home-community__action--primary {
-    border-color: var(--si-blue-strong);
-    background: var(--si-blue-strong);
-    color: #fff;
+    border-color: var(--si-yellow);
+    background: var(--si-yellow);
+    color: var(--si-yellow-ink);
   }
 
   .si-home-community__action--primary:hover {
-    border-color: var(--si-blue);
-    background: var(--si-blue);
-    color: #fff;
+    border-color: #ffd75e;
+    background: #ffd75e;
+    color: var(--si-yellow-ink);
   }
 
   :global(:root[data-theme='light']) .si-home-step,
@@ -722,7 +724,7 @@ const webinars = [
   :global(:root[data-theme='light']) .si-home-strategy,
   :global(:root[data-theme='light']) .si-home-webinar,
   :global(:root[data-theme='light']) .si-home-community {
-    background: rgba(255, 255, 255, 0.72);
+    background: var(--si-panel);
   }
 
   @media (max-width: 64rem) {

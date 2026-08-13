@@ -8,65 +8,75 @@
   --sl-text-h3: 1.16rem;
   --sl-text-h4: 1.04rem;
 
-  --sl-color-accent-low: #172f4a;
-  --sl-color-accent: #55a8ff;
-  --sl-color-accent-high: #d8ebff;
-  --sl-color-white: #f5f7fb;
-  --sl-color-gray-1: #eceff6;
-  --sl-color-gray-2: #c8cfdd;
-  --sl-color-gray-3: #929bad;
-  --sl-color-gray-4: #697184;
-  --sl-color-gray-5: #343945;
-  --sl-color-gray-6: #242832;
-  --sl-color-gray-7: #191c24;
-  --sl-color-black: #11141b;
+  --sl-color-accent-low: #193754;
+  --sl-color-accent: #4aa8ff;
+  --sl-color-accent-high: #e1f0ff;
+  --sl-color-white: #f2f2f7;
+  --sl-color-gray-1: #e3e2e9;
+  --sl-color-gray-2: #c6c3cf;
+  --sl-color-gray-3: #a6a3ad;
+  --sl-color-gray-4: #777580;
+  --sl-color-gray-5: #3a3a43;
+  --sl-color-gray-6: #2f2f37;
+  --sl-color-gray-7: #27272f;
+  --sl-color-black: #1a1a1f;
   --sl-color-text: var(--sl-color-gray-2);
-  --sl-color-bg: #11141b;
-  --sl-color-bg-nav: #24262f;
-  --sl-color-bg-sidebar: #24262f;
-  --sl-color-bg-inline-code: #242832;
-  --sl-color-hairline: rgba(255, 255, 255, 0.09);
-  --sl-color-hairline-light: rgba(255, 255, 255, 0.12);
-  --sl-color-hairline-shade: rgba(0, 0, 0, 0.26);
+  --sl-color-bg: #1a1a1f;
+  --sl-color-bg-nav: #202126;
+  --sl-color-bg-sidebar: #1f2025;
+  --sl-color-bg-inline-code: #292a32;
+  --sl-color-hairline: #34343d;
+  --sl-color-hairline-light: #3b3b45;
+  --sl-color-hairline-shade: rgba(0, 0, 0, 0.32);
 
-  --si-blue: #4ea1ff;
-  --si-blue-strong: #128cff;
-  --si-yellow: #ffc759;
-  --si-green: #36c47a;
-  --si-panel: rgba(255, 255, 255, 0.035);
-  --si-panel-strong: rgba(255, 255, 255, 0.065);
-  --si-border: rgba(255, 255, 255, 0.11);
-  --si-shadow: 0 18px 50px rgba(0, 0, 0, 0.22), 0 2px 10px rgba(0, 0, 0, 0.18);
+  --si-blue: #4aa8ff;
+  --si-blue-strong: #168fe8;
+  --si-yellow: #ffcb30;
+  --si-yellow-readable: #ffd75e;
+  --si-yellow-ink: #1b1a16;
+  --si-green: #45ba8d;
+  --si-panel: #24242b;
+  --si-panel-strong: #292930;
+  --si-panel-raised: #2f2f37;
+  --si-hero: #253650;
+  --si-border: #35353e;
+  --si-shadow: 0 18px 48px rgba(0, 0, 0, 0.24), 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
 :root[data-theme="light"] {
-  --sl-color-accent-low: #eaf4ff;
-  --sl-color-accent: #128cff;
-  --sl-color-accent-high: #073a73;
-  --sl-color-white: #151923;
-  --sl-color-gray-1: #242936;
-  --sl-color-gray-2: #3e4657;
-  --sl-color-gray-3: #687286;
-  --sl-color-gray-4: #9da6b7;
-  --sl-color-gray-5: #cdd4df;
-  --sl-color-gray-6: #edf2f7;
-  --sl-color-gray-7: #f7f9fc;
+  --sl-color-accent-low: #e5f2ff;
+  --sl-color-accent: #0878d1;
+  --sl-color-accent-high: #07335f;
+  --sl-color-white: #1a1a1f;
+  --sl-color-gray-1: #2f2f37;
+  --sl-color-gray-2: #4d4c56;
+  --sl-color-gray-3: #6f6d78;
+  --sl-color-gray-4: #9896a1;
+  --sl-color-gray-5: #d9dae0;
+  --sl-color-gray-6: #eff1f4;
+  --sl-color-gray-7: #f7f8fa;
   --sl-color-black: #ffffff;
-  --sl-color-text: #303747;
-  --sl-color-bg: #f8fafc;
-  --sl-color-bg-nav: rgba(255, 255, 255, 0.9);
-  --sl-color-bg-sidebar: #f1f5f9;
-  --sl-color-bg-inline-code: #edf2f7;
-  --sl-color-hairline: rgba(25, 32, 45, 0.1);
-  --sl-color-hairline-light: rgba(25, 32, 45, 0.08);
-  --sl-color-hairline-shade: rgba(25, 32, 45, 0.14);
+  --sl-color-text: #3f3e47;
+  --sl-color-bg: #ffffff;
+  --sl-color-bg-nav: rgba(255, 255, 255, 0.94);
+  --sl-color-bg-sidebar: #f7f8fa;
+  --sl-color-bg-inline-code: #f0f4fa;
+  --sl-color-hairline: #e1e2e7;
+  --sl-color-hairline-light: #e8e9ed;
+  --sl-color-hairline-shade: rgba(26, 26, 31, 0.13);
 
-  --si-blue: #128cff;
-  --si-blue-strong: #0877df;
-  --si-panel: rgba(255, 255, 255, 0.78);
+  --si-blue: #0878d1;
+  --si-blue-strong: #066fc2;
+  --si-yellow: #ffcb30;
+  --si-yellow-readable: #815800;
+  --si-yellow-ink: #1b1a16;
+  --si-green: #1b825e;
+  --si-panel: #f7f8fa;
   --si-panel-strong: #ffffff;
-  --si-border: rgba(25, 32, 45, 0.12);
-  --si-shadow: 0 18px 48px rgba(29, 48, 77, 0.11), 0 2px 8px rgba(29, 48, 77, 0.07);
+  --si-panel-raised: #ffffff;
+  --si-hero: #eef5ff;
+  --si-border: #e0e1e6;
+  --si-shadow: 0 18px 46px rgba(24, 35, 53, 0.1), 0 2px 8px rgba(24, 35, 53, 0.06);
 }
 
 @media (min-width: 50em) {
@@ -83,16 +93,14 @@ html {
 
 body {
   background:
-    linear-gradient(180deg, rgba(18, 140, 255, 0.11), transparent 17rem),
-    linear-gradient(90deg, rgba(255, 199, 89, 0.06), transparent 22rem),
+    linear-gradient(180deg, rgba(22, 143, 232, 0.055), transparent 16rem),
     var(--sl-color-bg);
   color: var(--sl-color-text);
 }
 
 :root[data-theme="light"] body {
   background:
-    linear-gradient(180deg, rgba(18, 140, 255, 0.08), transparent 18rem),
-    linear-gradient(90deg, rgba(255, 199, 89, 0.1), transparent 21rem),
+    linear-gradient(180deg, rgba(8, 127, 220, 0.045), transparent 18rem),
     var(--sl-color-bg);
 }
 
@@ -108,7 +116,7 @@ a:hover {
 
 .page > header.header {
   border-bottom-color: var(--si-border);
-  background: color-mix(in srgb, var(--sl-color-bg-nav), transparent 5%);
+  background: var(--sl-color-bg-nav);
   backdrop-filter: blur(16px);
   box-shadow: 0 1px 0 var(--si-border);
 }
@@ -163,7 +171,7 @@ site-search button {
   justify-content: flex-start;
   border: 1px solid var(--si-border);
   border-radius: 0.65rem;
-  background: color-mix(in srgb, var(--sl-color-bg), var(--sl-color-bg-nav) 35%);
+  background: var(--si-panel);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
@@ -191,7 +199,7 @@ site-search button kbd {
 
 .sidebar-pane {
   border-right-color: var(--si-border);
-  background: color-mix(in srgb, var(--sl-color-bg-sidebar), var(--sl-color-bg) 10%);
+  background: var(--sl-color-bg-sidebar);
 }
 
 .sidebar-content .large,
@@ -213,22 +221,22 @@ site-search button kbd {
 }
 
 .sidebar-content a:hover {
-  background: var(--si-panel);
+  background: var(--si-panel-strong);
   color: var(--sl-color-white);
 }
 
 .sidebar-content a[aria-current="page"] {
-  border: 1px solid rgba(255, 199, 89, 0.45);
-  background: rgba(255, 199, 89, 0.14);
-  color: var(--si-yellow);
+  border: 1px solid color-mix(in srgb, var(--si-yellow), transparent 52%);
+  background: color-mix(in srgb, var(--si-yellow), transparent 86%);
+  color: var(--si-yellow-readable);
   font-weight: 700;
 }
 
 :root[data-theme="light"] .sidebar-content a[aria-current="page"] {
-  border-color: rgba(18, 140, 255, 0.2);
-  background: #ffffff;
-  color: var(--si-blue-strong);
-  box-shadow: 0 6px 18px rgba(29, 48, 77, 0.08);
+  border-color: color-mix(in srgb, var(--si-yellow), transparent 36%);
+  background: color-mix(in srgb, var(--si-yellow), white 79%);
+  color: var(--si-yellow-readable);
+  box-shadow: none;
 }
 
 .si-link-grid {
@@ -282,9 +290,15 @@ site-search button kbd {
 }
 
 .si-action-link--primary {
-  border-color: var(--si-blue-strong);
-  background: var(--si-blue-strong);
-  color: #fff;
+  border-color: var(--si-yellow);
+  background: var(--si-yellow);
+  color: var(--si-yellow-ink);
+}
+
+.si-action-link--primary:hover {
+  border-color: #ffd75e;
+  background: #ffd75e;
+  color: var(--si-yellow-ink);
 }
 
 .right-sidebar {
@@ -301,14 +315,14 @@ site-search button kbd {
 
 html[data-has-hero] .content-panel:first-of-type {
   background:
-    linear-gradient(135deg, rgba(18, 140, 255, 0.14), transparent 42%),
-    linear-gradient(90deg, rgba(255, 199, 89, 0.08), transparent 54%);
+    linear-gradient(135deg, color-mix(in srgb, var(--si-blue), transparent 88%), transparent 42%),
+    var(--si-hero);
 }
 
 :root[data-theme="light"][data-has-hero] .content-panel:first-of-type {
   background:
-    linear-gradient(135deg, rgba(18, 140, 255, 0.1), transparent 42%),
-    linear-gradient(90deg, rgba(255, 199, 89, 0.13), transparent 54%);
+    linear-gradient(135deg, color-mix(in srgb, var(--si-blue), transparent 91%), transparent 42%),
+    var(--si-hero);
 }
 
 html:not([data-has-hero]) .content-panel:first-of-type {
@@ -441,15 +455,15 @@ html:not([data-has-hero]) .content-panel:first-of-type + .content-panel {
 }
 
 .si-home-hero__action--primary {
-  border-color: var(--si-blue-strong);
-  background: var(--si-blue-strong);
-  color: #fff;
+  border-color: var(--si-yellow);
+  background: var(--si-yellow);
+  color: var(--si-yellow-ink);
 }
 
 .si-home-hero__action--primary:hover {
-  border-color: var(--si-blue);
-  background: var(--si-blue);
-  color: #fff;
+  border-color: #ffd75e;
+  background: #ffd75e;
+  color: var(--si-yellow-ink);
 }
 
 .sl-markdown-content {
@@ -578,8 +592,8 @@ html:not([data-has-hero]) .content-panel:first-of-type + .content-panel {
   border: 1px solid rgba(255, 255, 255, 0.28);
   border-bottom: 0;
   border-radius: 0.5rem 0.5rem 0 0;
-  background: rgba(25, 28, 36, 0.96);
-  color: #c8cfdd;
+  background: color-mix(in srgb, var(--si-panel-raised), transparent 4%);
+  color: var(--sl-color-gray-2);
   font: inherit;
   font-size: 0.75rem;
   font-weight: 700;
@@ -600,7 +614,7 @@ html:not([data-has-hero]) .content-panel:first-of-type + .content-panel {
 }
 
 .si-video__provider:focus-visible {
-  outline: 2px solid var(--si-yellow);
+  outline: 2px solid var(--si-yellow-readable);
   outline-offset: 2px;
 }
 
@@ -656,10 +670,6 @@ html:not([data-has-hero]) .content-panel:first-of-type + .content-panel {
   border-radius: 0.6rem;
   background: var(--si-panel);
   box-shadow: var(--si-shadow);
-}
-
-.sl-link-button.primary {
-  color: #11141b;
 }
 
 @media (min-width: 50rem) {
