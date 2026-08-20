@@ -553,6 +553,90 @@ html:not([data-has-hero]) .content-panel:first-of-type + .content-panel {
   margin-block: 1.25rem 2rem;
 }
 
+.sl-markdown-content .si-themed-screenshot {
+  inline-size: min(100%, var(--si-screenshot-width, 100%));
+  max-inline-size: 100%;
+  margin: 1.25rem 0 2rem;
+}
+
+.sl-markdown-content .si-themed-screenshot__media {
+  position: relative;
+  inline-size: 100%;
+}
+
+.sl-markdown-content .si-themed-screenshot__image {
+  display: none;
+  inline-size: 100%;
+  max-inline-size: 100%;
+  margin: 0;
+}
+
+.sl-markdown-content .si-themed-screenshot__image--dark {
+  display: block;
+}
+
+:root[data-theme="light"] .sl-markdown-content .si-themed-screenshot__image--dark {
+  display: none;
+}
+
+:root[data-theme="light"] .sl-markdown-content .si-themed-screenshot__image--light {
+  display: block;
+}
+
+.sl-markdown-content .si-media-annotation {
+  position: absolute;
+  inset: 0;
+  inline-size: 100%;
+  block-size: 100%;
+  margin: 0;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.sl-markdown-content .si-media-annotation__halo,
+.sl-markdown-content .si-media-annotation__shape {
+  vector-effect: non-scaling-stroke;
+}
+
+.sl-markdown-content .si-media-annotation__halo {
+  fill: none;
+  stroke: rgba(18, 18, 22, 0.9);
+  stroke-width: 7;
+}
+
+.sl-markdown-content .si-media-annotation__shape {
+  fill: rgba(249, 166, 5, 0.08);
+  stroke: #f9a605;
+  stroke-width: 3;
+}
+
+.sl-markdown-content .si-media-annotation__arrow {
+  fill: none;
+}
+
+.sl-markdown-content .si-media-annotation__arrowhead {
+  fill: #f9a605;
+  stroke: rgba(18, 18, 22, 0.9);
+  stroke-width: 1.5;
+  vector-effect: non-scaling-stroke;
+}
+
+:root[data-theme="light"] .sl-markdown-content .si-media-annotation__halo {
+  display: none;
+}
+
+:root[data-theme="light"] .sl-markdown-content .si-media-annotation__arrowhead {
+  stroke: none;
+}
+
+.sl-markdown-content .si-themed-screenshot figcaption {
+  max-inline-size: 40rem;
+  margin-top: 0.7rem;
+  color: var(--sl-color-gray-3);
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
 .sl-markdown-content iframe {
   display: block;
   width: 100%;

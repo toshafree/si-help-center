@@ -8,11 +8,15 @@
     "build": "ASTRO_TELEMETRY_DISABLED=1 astro build && node scripts/prepare-sites-build.mjs",
     "build:github": "DEPLOY_TARGET=github-pages ASTRO_TELEMETRY_DISABLED=1 astro build && node scripts/prepare-github-pages.mjs",
     "preview": "ASTRO_TELEMETRY_DISABLED=1 astro preview",
-    "import:help": "node scripts/import-help.mjs"
+    "import:help": "node scripts/import-help.mjs",
+    "screenshots": "node scripts/capture-screenshots.mjs"
   },
   "dependencies": {
     "@astrojs/starlight": "^0.34.4",
     "astro": "^5.6.1"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "playwright-core": "^1.62.1",
+    "sharp": "^0.34.5"
+  }
 }
