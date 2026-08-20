@@ -16,7 +16,51 @@ readingTime: "~ 5 мин"
 На практике стандартное отклонение часто обозначают греческой буквой σ (сигма).
 Если цена в моменте выше или ниже среднего значения, можно измерить, **на сколько сигм** она отклонилась. Это даёт масштаб отклонения в понятных статистических единицах.
 
-![Иллюстрация к статье std](/help-assets/std-1-std-2.png)
+<div class="si-theme-image">
+  <img
+    class="si-theme-image__dark"
+    src="/help-assets/std-1-dark.png"
+    alt="Нормальное распределение и границы стандартного отклонения"
+    width="1536"
+    height="1024"
+  />
+  <img
+    class="si-theme-image__light"
+    src="/help-assets/std-1-light.png"
+    alt="Нормальное распределение и границы стандартного отклонения"
+    width="1536"
+    height="1024"
+  />
+</div>
+
+<style>
+  .si-theme-image {
+    margin-block: 1.25rem 2rem;
+  }
+
+  .sl-markdown-content .si-theme-image img {
+    display: none;
+    width: 100%;
+    height: auto;
+    margin: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .sl-markdown-content .si-theme-image .si-theme-image__dark {
+    display: block;
+  }
+
+  :root[data-theme='light'] .sl-markdown-content .si-theme-image .si-theme-image__dark {
+    display: none;
+  }
+
+  :root[data-theme='light'] .sl-markdown-content .si-theme-image .si-theme-image__light {
+    display: block;
+  }
+</style>
 
 Если представить все значения в виде гистограммы (нормального распределения), получится следующее:
 
